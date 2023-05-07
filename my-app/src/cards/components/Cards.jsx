@@ -31,9 +31,8 @@ Cards.propTypes = {
       title: string.isRequired,
       subtitle: string.isRequired,
       phone: string.isRequired,
-      address: string.isRequired,
-      bizNumber: number.isRequired,
-      image: string.isRequired,
+      address: PropTypes.oneOfType([PropTypes.string, PropTypes.object])
+        .isRequired,
       user_id: string.isRequired,
       likes: arrayOf(string),
     })

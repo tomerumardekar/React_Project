@@ -3,7 +3,7 @@ import { Route, Routes } from "react-router-dom";
 import CardDetailsPage from "../cards/pages/CardDetailsPage";
 import CardPage from "../cards/pages/CardPage";
 import FAV_CARDS from "../cards/pages/FAV_CARDS";
-import My_CARDS from "../cards/pages/MY_CARDS";
+
 import AboutPage from "../pages/AboutPage";
 import ErrorPage from "../pages/ErrorPage";
 
@@ -29,6 +29,7 @@ import AddNewCard from "../cards/pages/AddNewCard";
 import ProfilePage from "../cards/pages/ProfilePage";
 
 import HomePage from "../cards/pages/HomePage";
+import MyCards from "../cards/pages/MyCards";
 export default function Router() {
   return (
     <Routes>
@@ -51,7 +52,7 @@ export default function Router() {
         <Route path="render" element={<Get2Countries />} />
       </Route>
       <Route path="favcards" element={<FAV_CARDS />} />
-      <Route path="mycards" element={<My_CARDS />} />
+      <Route path="mycards" element={<MyCards />} />
       <Route path="test" element={<MyForm />} />
       <Route path="form" element={<TestForm />} />
       <Route path="addNewCard" element={<AddNewCard />} />

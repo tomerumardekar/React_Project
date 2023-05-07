@@ -26,7 +26,6 @@ export const deleteCard = async (cardId) => {
   } catch (error) {
     return Promise.reject(error.message);
   }
-  console.log("delete");
 };
 export const getCard = async (cardId) => {
   try {

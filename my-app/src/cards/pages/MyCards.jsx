@@ -12,13 +12,15 @@ export default function MyCards() {
   const { error, isLoading, cards } = value;
   const { user } = useUser();
   const navigate = useNavigate();
+
   useEffect(() => {
     if (!user) {
       navigate(ROUTES.CARDS);
     } else {
       handleGetMyCards();
     }
-  }, [user]);
+  }, [user, navigate, handleGetMyCards]);
+
   const handleDelete = async (id) => {
     await handleDeleteCard(id);
     await handleGetMyCards();

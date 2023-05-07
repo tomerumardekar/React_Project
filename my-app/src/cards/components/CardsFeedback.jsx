@@ -26,7 +26,6 @@ CardsFeedback.propTypes = {
   error: string,
   cards: arrayOf(object),
   handleDelete: func.isRequired,
-  onLike: func.isRequired,
 };
 
 export default React.memo(CardsFeedback);

@@ -1,5 +1,5 @@
 import { Button, Typography } from "@mui/material";
-import { object, string } from "prop-types";
+import { object, oneOfType, string } from "prop-types";
 import React from "react";
 import NavBarLink from "./NavBarLink";
 
@@ -15,6 +15,6 @@ export default function NavItem({ to, sx, label }) {
 
 NavItem.propTypes = {
   to: string.isRequired,
-  label: string.isRequired,
+  label: oneOfType([string, object]).isRequired,
   sx: object,
 };

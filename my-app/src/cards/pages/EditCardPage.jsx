@@ -37,7 +37,7 @@ export default function EditCardPage() {
       rest.setData(modelCard);
       setCardData(modelCard);
     });
-  }, []);
+  }, [handleGetCard, id, rest]);
   if (!user) return <Navigate replace to={ROUTES.CARDS} />;
 
   return (

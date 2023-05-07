@@ -1,40 +1,36 @@
-import { AppBar, Button, Container, Toolbar } from "@mui/material";
-import React, { useState } from "react";
-import { Navigate, Outlet } from "react-router-dom";
+import { AppBar, Container, Toolbar } from "@mui/material";
+
+import { Outlet } from "react-router-dom";
 import NavItem from "../routes/components/NavItem";
-import ROUTES from "../routes/routesModel";
 
 export default function SandBox() {
-  //   const user = {};
-  //   user.isAdmin = true;
-  //   if (!user || !user.isAdmin) return <Navigate replace to={ROUTES.CARDS} />;
   return (
     <div>
       <AppBar position="sticky" color="transparent">
         <Toolbar>
-          <NavItem to="counter" label="Counter Page" sx={{ color: "black" }} />
+          <NavItem to="/counter" label="Counter Page" sx={{ color: "black" }} />
           <NavItem
-            to="mydetails"
+            to="/mydetails"
             label="My Details Page"
             sx={{ color: "black" }}
           />
           <NavItem
-            to="password"
+            to="/password"
             label="Password Page"
             sx={{ color: "black" }}
           />
-          <NavItem to="todo" label="Todo Page" sx={{ color: "black" }} />
+          <NavItem to="/todo" label="Todo Page" sx={{ color: "black" }} />
           <NavItem
-            to="firsteffect"
+            to="/firsteffect"
             label="First Effect Page"
             sx={{ color: "black" }}
           />
           <NavItem
-            to="countries"
-            label="Coutries Page"
+            to="/countries"
+            label="Countries Page"
             sx={{ color: "black" }}
           />
-          <NavItem to="render" label="Render" sx={{ color: "black" }} />
+          <NavItem to="/render" label="Render Page" sx={{ color: "black" }} />
         </Toolbar>
       </AppBar>
       <Container>

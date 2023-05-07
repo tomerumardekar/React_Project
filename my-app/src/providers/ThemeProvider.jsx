@@ -19,7 +19,7 @@ export default function ThemeProvider({ children }) {
   const toggleDarkMode = useCallback(() => {
     setDark((prev) => !prev);
     console.log(isDark);
-  }, [setDark]);
+  }, [isDark, setDark]);
 
   const theme = createTheme({
     palette: {
