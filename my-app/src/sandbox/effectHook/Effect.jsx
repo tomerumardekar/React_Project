@@ -1,4 +1,4 @@
-import { Avatar, Box, Button, Typography } from "@mui/material";
+import { Button } from "@mui/material";
 import React, { useEffect, useState } from "react";
 import Country from "./Country";
 

@@ -29,18 +29,21 @@ const useUsers = () => {
     [setUser]
   );
 
-  const handleLogin = useCallback(async (user) => {
-    try {
-      const token = await login(user);
-      setTokenInLocalStorage(token);
-      setToken(token);
-      const userFromLocalStorage = getUser();
-      requestStatus(false, null, userFromLocalStorage);
-      navigate(ROUTES.CARDS);
-    } catch (error) {
-      requestStatus(false, error, null);
-    }
-  }, []);
+  const handleLogin = useCallback(
+    async (user) => {
+      try {
+        const token = await login(user);
+        setTokenInLocalStorage(token);
+        setToken(token);
+        const userFromLocalStorage = getUser();
+        requestStatus(false, null, userFromLocalStorage);
+        navigate(ROUTES.CARDS);
+      } catch (error) {
+        requestStatus(false, error, null);
+      }
+    },
+    [navigate, requestStatus, setToken]
+  );
 
   const handleLogout = useCallback(() => {
     removeToken();

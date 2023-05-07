@@ -23,7 +23,7 @@ export default function Todo() {
         value={newTask}
         onChange={updateNewTask}
       />
-      <Button variant="contained" onClick={addToList} disabled={newTask == ""}>
+      <Button variant="contained" onClick={addToList} disabled={newTask === ""}>
         +
       </Button>
       <List>

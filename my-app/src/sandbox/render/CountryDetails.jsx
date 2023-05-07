@@ -12,7 +12,7 @@ export default memo(function CountryDetails({ countryName }) {
   };
 
   useEffect(() => {
-    if (countryName != "") {
+    if (countryName !== "") {
       getDetails1(countryName)
         .then((value) => {
           setCountry(value);

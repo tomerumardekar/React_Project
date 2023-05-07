@@ -1,4 +1,4 @@
-import { node, string } from "prop-types";
+import { node } from "prop-types";
 import React from "react";
 
 export default function ChildComponent({ data, children }) {
