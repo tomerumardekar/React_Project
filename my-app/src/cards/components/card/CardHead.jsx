@@ -15,7 +15,3 @@ export default function CardHead({ image }) {
     />
   );
 }
-
-CardHead.propTypes = {
-  image: imgType.isRequired,
-};
