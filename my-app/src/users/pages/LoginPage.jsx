@@ -8,11 +8,10 @@ import ROUTES from "../../routes/routesModel";
 
 import Form from "../../forms/components/Form";
 import Input from "../../forms/components/Input";
-import { useUser } from "../providers/UserProvider";
+
 import useUsers from "../hooks/useUsers";
 
 export default function LoginPage() {
-  const { user } = useUser();
   const { handleLogin } = useUsers();
 
   const { value, ...rest } = useForm(
