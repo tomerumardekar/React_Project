@@ -1,7 +1,27 @@
 import React, { useState } from "react";
 import Map from "../components/Map";
-import { Typography } from "@mui/material";
-const MapPage = () => {
+import { Container, Typography } from "@mui/material";
+import { useEffect } from "react";
+const MapPage = ({ address }) => {
+  const [center, setCenter] = useState([]);
+
+  useEffect(() => {
+    if (address) {
+      const convertAddressToLatLng = async (address) => {
+        const url = `https://nominatim.openstreetmap.org/search?q=${address}&format=json`;
+        const response = await fetch(url);
+        const data = await response.json();
+        if (data && data.length > 0) {
+          const tempCenter = [data[0].lat, data[0].lon];
+          setCenter(tempCenter);
+        } else {
+          throw new Error("Could not convert address to latlng");
+        }
+      };
+      convertAddressToLatLng(address);
+    }
+  }, [address]);
+
   const mapPageStyle = {
     width: "80%",
   };
@@ -11,8 +31,8 @@ const MapPage = () => {
   };
 
   const mapSectionStyle = {
-    width: "40%",
-    height: "400px", // Adjust as needed
+    width: "35%",
+    height: "300px", // Adjust as needed
     margin: "20px",
     marginLeft: "180px",
   };
@@ -23,7 +43,7 @@ const MapPage = () => {
         <Typography variant="body2" gutterBottom></Typography>
       </div>
       <div style={mapSectionStyle}>
-        <Map center={[51.505, -0.09]} zoom={13} />
+        {center.length > 0 && <Map center={center} zoom={13} />}
       </div>
     </div>
   );

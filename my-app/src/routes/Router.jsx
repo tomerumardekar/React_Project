@@ -1,6 +1,6 @@
 import React from "react";
 import { Route, Routes } from "react-router-dom";
-import CardDetailsWithMap from "../cards/pages/CardDeatailWith";
+import CardDetailsWithMap from "../cards/pages/CardDeatailWithMap";
 import CardPage from "../cards/pages/CardPage";
 import FAV_CARDS from "../cards/pages/FAV_CARDS";
 

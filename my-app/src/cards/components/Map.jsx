@@ -53,7 +53,12 @@ const Map = ({ center, zoom, address }) => {
     L.marker(coordinates, { icon: defaultIcon }).addTo(mapRef.current);
   }, [coordinates, zoom]);
 
-  return <div id="map" style={{ height: "100%", width: "100%" }} />;
+  return (
+    <div
+      id="map"
+      style={{ height: "100%", width: "100%", zIndex: "0 !important" }}
+    />
+  );
 };
 
 export default Map;

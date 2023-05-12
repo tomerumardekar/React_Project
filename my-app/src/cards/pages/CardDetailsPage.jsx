@@ -4,6 +4,7 @@ import { useParams } from "react-router-dom";
 import PageHeader from "../../components/PageHeader";
 import useCards from "../hooks/useCards";
 import mapCardToModel from "../helpers/normalization/mapToModel";
+import MapPage from "./MapPage";
 
 const CardDetailsPage = () => {
   const { id } = useParams();
@@ -25,37 +26,42 @@ const CardDetailsPage = () => {
       />
 
       {card && (
-        <Grid container spacing={3}>
-          <Grid item xs={12} sm={6}>
-            <Typography variant="h4" gutterBottom>
-              {card.title}
-            </Typography>
-            <Typography variant="h5" gutterBottom>
-              {card.subtitle}
-            </Typography>
-            <Typography variant="body1" gutterBottom>
-              {card.description}
-            </Typography>
-            <Typography variant="body2" gutterBottom>
-              {card.about}
-            </Typography>
-            <Typography variant="body1" gutterBottom>
-              <strong>Ways of communication:</strong>
-              {card.email}, {card.phone}
-            </Typography>
-            <Typography variant="body2" gutterBottom>
-              <strong>Directions:</strong> {card.street}, {card.houseNumber},
-              {card.city}
-            </Typography>
+        <>
+          <Grid container spacing={3}>
+            <Grid item xs={12} sm={6}>
+              <Typography variant="h4" gutterBottom>
+                {card.title}
+              </Typography>
+              <Typography variant="h5" gutterBottom>
+                {card.subtitle}
+              </Typography>
+              <Typography variant="body1" gutterBottom>
+                {card.description}
+              </Typography>
+              <Typography variant="body2" gutterBottom>
+                {card.about}
+              </Typography>
+              <Typography variant="body1" gutterBottom>
+                <strong>Ways of communication:</strong>
+                {card.email}, {card.phone}
+              </Typography>
+              <Typography variant="body2" gutterBottom>
+                <strong>Directions:</strong> {card.street}, {card.houseNumber},
+                {card.city}
+              </Typography>
+            </Grid>
+            <Grid item xs={12} sm={6}>
+              <img
+                src={"/" + card.imageUrl}
+                alt="Card image"
+                style={{ maxWidth: "100%" }}
+              />
+            </Grid>
           </Grid>
-          <Grid item xs={12} sm={6}>
-            <img
-              src={"/" + card.imageUrl}
-              alt="Card image"
-              style={{ maxWidth: "100%" }}
-            />
-          </Grid>
-        </Grid>
+          <MapPage
+            address={`${card.street} ${card.houseNumber}, ${card.city}`}
+          />
+        </>
       )}
     </Container>
   );

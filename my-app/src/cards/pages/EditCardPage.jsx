@@ -29,7 +29,6 @@ export default function EditCardPage() {
       user_id: card.user_id,
     });
   });
-  console.log(value);
 
   useEffect(() => {
     handleGetCard(id).then((data) => {
