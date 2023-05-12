@@ -159,6 +159,7 @@ export default function useCards() {
 
   return {
     value,
+    getCard,
     handleGetCards,
     handleGetMyCards,
     handleDeleteCard,
