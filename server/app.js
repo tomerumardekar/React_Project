@@ -244,7 +244,6 @@ app.delete("/cards/:id", (req, res) => {
   }
 });
 app.put("/cards/:id", (req, res) => {
-  console.log("edit in card");
   const cardIndex = cards.findIndex((c) => c._id === req.params.id);
   if (cardIndex === -1) {
     res.status(404).send("Card not found");

@@ -2,7 +2,7 @@ import { Grid } from "@mui/material";
 import React from "react";
 import CardBussinesComponent from "./card/CardBussinesComponent";
 import PropTypes from "prop-types";
-import { arrayOf, shape, string, number } from "prop-types";
+import { arrayOf, shape, string } from "prop-types";
 
 export default function Cards({ cards, handleDelete, onLike, handleEdit }) {
   return (
