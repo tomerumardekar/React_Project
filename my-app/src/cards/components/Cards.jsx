@@ -38,6 +38,5 @@ Cards.propTypes = {
     })
   ).isRequired,
   handleDelete: PropTypes.func.isRequired,
-  onLike: PropTypes.func.isRequired,
-  handleEdit: PropTypes.func.isRequired,
+  /* onLike: PropTypes.func.isRequired, */
 };

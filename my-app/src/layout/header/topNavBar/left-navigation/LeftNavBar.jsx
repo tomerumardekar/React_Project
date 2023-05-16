@@ -27,7 +27,6 @@ export default function LeftNavBar() {
         <NavItem to={ROUTES.ABOUT} label="About" />
 
         {user?.isBusiness && <NavItem to={ROUTES.MY_CARDS} label="My cards" />}
-
         {user && <NavItem to={ROUTES.FAV_CARDS} label="Favorite Cards" />}
         {user?.isAdmin && <NavItem to={ROUTES.SANDBOX} label="Sandbox" />}
       </Box>

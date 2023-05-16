@@ -12,7 +12,7 @@ const ROUTES = {
 
   SANDBOX: "/sandbox",
   FAV_CARDS: "/favcards",
-  MyCards: "/mycards",
+  MY_CARDS: "/mycards",
   ADDNEWCARD: "/AddNewCard",
   USERS: "/users",
   HOME: "/home",

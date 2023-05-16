@@ -17,8 +17,8 @@ const normalizeCard = (card) => {
       street: card.street,
       houseNumber: card.houseNumber,
       zip: card.zip,
-      BusinessNumber: card.BusinessNumber,
     },
+    BusinessNumber: card.BusinessNumber,
   };
 };
 

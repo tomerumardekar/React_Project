@@ -14,7 +14,6 @@ export default function NavItem({ to, sx, label }) {
 }
 
 NavItem.propTypes = {
-  to: string.isRequired,
   label: oneOfType([string, object]).isRequired,
   sx: object,
 };

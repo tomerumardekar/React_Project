@@ -15,7 +15,7 @@ const cards = [
     subtitle: "Clean and professional design, perfect for any industry",
     description:
       "Introduce your business in style with our modern business card. The sleek and minimalist design is perfect for any industry, and will make a lasting impression on your clients and business partners.",
-    phone: "050-1111111",
+    phone: "050-5386522",
     email: "info@yourbusiness.com",
     web: "https://www.yourbusiness.com",
     about:
@@ -43,7 +43,7 @@ const cards = [
     subtitle: "Stand out from the crowd with our unique and creative design",
     description:
       "Make a statement with our creative business card. The bold and unique design will set you apart from your competitors, and leave a lasting impression on anyone who receives it.",
-    phone: "050-2222222",
+    phone: "052-6005458",
     email: "info@yourbusiness.com",
     web: "https://www.yourbusiness.com",
     about:
@@ -55,8 +55,8 @@ const cards = [
     address: {
       state: "TLV",
       country: "Israerl",
-      street: "Dizingof",
-      houseNumber: 2,
+      street: "Shaul HaMelech",
+      houseNumber: 27,
       city: "Tel Aviv",
       zip: 1312,
     },
@@ -70,7 +70,7 @@ const cards = [
     subtitle: "Elevate your brand with our premium, high-end design",
     description:
       "Impress your clients and business partners with our luxury business card. The premium design and high-quality materials will showcase your brand in the best possible light, and leave a lasting impression on anyone who receives it.",
-    phone: "050-3333333",
+    phone: "052-8980094",
     email: "info@yourbusiness.com",
     web: "https://www.yourbusiness.com",
     about:
@@ -80,11 +80,11 @@ const cards = [
       alt: "Luxury Business Card",
     },
     address: {
-      state: "TLV",
+      state: "Israel",
       country: "Israerl",
-      street: "Dizingof",
-      houseNumber: 3,
-      city: "Tel Aviv",
+      street: "Efroni",
+      houseNumber: 18,
+      city: "Shlomi",
       zip: 1312,
     },
     BusinessNumber: 333333,
@@ -245,6 +245,7 @@ app.delete("/cards/:id", (req, res) => {
 });
 app.put("/cards/:id", (req, res) => {
   const cardIndex = cards.findIndex((c) => c._id === req.params.id);
+
   if (cardIndex === -1) {
     res.status(404).send("Card not found");
   } else {
@@ -254,6 +255,7 @@ app.put("/cards/:id", (req, res) => {
       _id: req.params.id,
     };
     cards[cardIndex] = updatedCard;
+    console.log(updatedCard);
     res.json(updatedCard);
   }
 });

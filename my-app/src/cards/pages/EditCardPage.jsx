@@ -22,11 +22,11 @@ export default function EditCardPage() {
 
   const { user } = useUser();
 
-  const { value, ...rest } = useForm(initialCardForm, cardSchema, () => {
+  const { value, ...rest } = useForm(initialCardForm, cardSchema, (data) => {
     handleUpdateCard(card._id, {
-      ...normalizeCard({ ...value.data }),
-
-      user_id: card.user_id,
+      ...normalizeCard(data),
+      user_id: data.user_id,
+      BusinessNumber: data.BusinessNumber,
     });
   });
 
@@ -36,7 +36,7 @@ export default function EditCardPage() {
       rest.setData(modelCard);
       setCardData(modelCard);
     });
-  }, [handleGetCard, id, rest]);
+  }, []);
   if (!user) return <Navigate replace to={ROUTES.CARDS} />;
 
   return (

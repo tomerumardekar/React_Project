@@ -11,7 +11,6 @@ export default function NavBarLink({ to, children, sx }) {
 }
 
 NavBarLink.propTypes = {
-  to: string.isRequired,
   children: node.isRequired,
   sx: object,
 };

@@ -13,7 +13,6 @@ import useCards from "../../hooks/useCards";
 
 export default function CardActionBar({
   handleDelete,
-
   _id,
   user_id,
   cardLikes,
@@ -22,8 +21,9 @@ export default function CardActionBar({
   const { user } = useUser();
   const { handleLikeCard } = useCards();
   const [isDialogOpen, setDialog] = useState(false);
+
   const [isLiked, setLiked] = useState(
-    () => !!cardLikes.find((_id) => _id == user.id)
+    user ? () => !!cardLikes.find((_id) => _id == user.id) : null
   );
 
   const handleDialog = (term) => {
@@ -85,6 +85,5 @@ export default function CardActionBar({
 
 CardActionBar.propTypes = {
   handleDelete: func.isRequired,
-  handleEdit: func.isRequired,
   _id: string.isRequired,
 };

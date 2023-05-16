@@ -41,7 +41,6 @@ function CardBusinessComponent({ card, handleDelete, handleEdit, onLike }) {
 
 CardBusinessComponent.propTypes = {
   handleDelete: PropTypes.func,
-  handleEdit: PropTypes.func,
   onLike: PropTypes.func,
 };
 
