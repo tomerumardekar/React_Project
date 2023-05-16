@@ -23,7 +23,7 @@ export default function CardActionBar({
   const [isDialogOpen, setDialog] = useState(false);
 
   const [isLiked, setLiked] = useState(
-    user ? () => !!cardLikes.find((_id) => _id == user.id) : null
+    user && cardLikes ? () => !!cardLikes.find((_id) => _id === user.id) : null
   );
 
   const handleDialog = (term) => {
