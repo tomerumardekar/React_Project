@@ -10,7 +10,7 @@ const ROUTES = {
   LOGIN: "/login",
   USER_PROFILE: "/profilePage",
 
-  SANDBOX: "/sandbox",
+  /* SANDBOX: "/sandbox", */
   FAV_CARDS: "/favcards",
   MY_CARDS: "/mycards",
   ADDNEWCARD: "/AddNewCard",

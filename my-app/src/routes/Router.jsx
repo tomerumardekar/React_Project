@@ -41,7 +41,7 @@ export default function Router() {
       <Route path={ROUTES.SIGNUP} element={<SignupPage />} />
       <Route path={`${ROUTES.EDIT_CARD}/:id`} element={<EditCardPage />} />
       <Route path={`${ROUTES.CARD_INFO}/:id`} element={<CardDetailsPage />} />
-      <Route path={ROUTES.SANDBOX} element={<SandBox />}>
+      {/* <Route path={ROUTES.SANDBOX} element={<SandBox />}>
         <Route path="counter" element={<Counter />} />
         <Route path="mydetails" element={<MyDetails />} />
         <Route path="password" element={<Password />} />
@@ -50,7 +50,7 @@ export default function Router() {
         <Route path="countries" element={<Countries />} />
         <Route path="effect" element={<Effect />} />
         <Route path="render" element={<Get2Countries />} />
-      </Route>
+      </Route> */}
       <Route path="favcards" element={<FAV_CARDS />} />
       <Route path="mycards" element={<MyCards />} />
       <Route path="test" element={<MyForm />} />
