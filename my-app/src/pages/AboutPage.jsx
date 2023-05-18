@@ -2,7 +2,7 @@ import { Container, Grid } from "@mui/material";
 import React from "react";
 import PageHeader from "../components/PageHeader";
 
-export default function AboutPage() {
+const AboutPage = React.memo(() => {
   return (
     <Container>
       <PageHeader
@@ -49,4 +49,6 @@ export default function AboutPage() {
       </Grid>
     </Container>
   );
-}
+});
+
+export default AboutPage;
