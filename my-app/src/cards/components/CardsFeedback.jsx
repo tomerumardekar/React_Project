@@ -25,7 +25,7 @@ CardsFeedback.propTypes = {
   isLoading: bool.isRequired,
   error: string,
   cards: arrayOf(object),
-  handleDelete: func.isRequired,
+  handleDelete: func,
 };
 
 export default React.memo(CardsFeedback);
