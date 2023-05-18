@@ -8,7 +8,7 @@ const MapPage = ({ address }) => {
   useEffect(() => {
     if (address) {
       const convertAddressToLatLng = async (address) => {
-        const url = `https://nominatim.openstreetmap.org/search?q=${address}&format=json`;
+        const url = `https://nominatim.openstreetmap.org/?q=${address}&format=json`;
         const response = await fetch(url);
         const data = await response.json();
         if (data && data.length > 0) {

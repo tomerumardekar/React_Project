@@ -49,10 +49,11 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 }));
 
 export default function SearchAppBar() {
-  const [setSearchParam] = useSearchParams();
-  const handeleChange = ({ target }) => {
-    setSearchParam({ q: target.value });
+  const [searchParams, setSearchParams] = useSearchParams();
+  const handleChange = ({ target }) => {
+    setSearchParams({ q: target.value });
   };
+
   return (
     <Box>
       <AppBar position="static">
@@ -62,7 +63,7 @@ export default function SearchAppBar() {
             <StyledInputBase
               id="search-input"
               placeholder="Search…"
-              onChange={handeleChange}
+              onChange={handleChange}
               inputProps={{ "aria-label": "search" }}
             />
             <IconButton aria-label="search">
