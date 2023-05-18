@@ -37,6 +37,4 @@ Cards.propTypes = {
       likes: arrayOf(string),
     })
   ).isRequired,
-  handleDelete: PropTypes.func.isRequired,
-  /* onLike: PropTypes.func.isRequired, */
 };

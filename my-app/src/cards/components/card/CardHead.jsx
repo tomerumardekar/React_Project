@@ -3,7 +3,6 @@ import React from "react";
 import imgType from "../../models/types/imgType";
 
 export default function CardHead({ image }) {
-  console.log(image);
   return (
     <CardMedia
       component="img"

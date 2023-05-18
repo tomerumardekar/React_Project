@@ -155,7 +155,6 @@ const verifyToken = (tokenFromClient) => {
 };
 
 app.get("/cards", (req, res) => {
-  console.log(cards);
   res.json(cards);
 });
 
@@ -183,14 +182,11 @@ app.get("/users", (req, res) => {
   res.json(users);
 });
 app.post("/cards", (req, res) => {
-  // Add a new ID to the card object
   const newId = Date.now().toString();
   const newCardWithId = { ...req.body, _id: newId };
 
-  // Add the new card to the cards array
   cards.push(newCardWithId);
 
-  // Send the new card object back to the client
   res.json(newCardWithId);
 });
 
@@ -207,8 +203,6 @@ app.get("/cards/fav-cards", (req, res) => {
 });
 
 app.post("/add-new-card", (req, res) => {
-  // Add a new ID to the card object
-  console.log("!!!");
   const newId = Date.now().toString();
   const newCardWithId = { ...req.body, _id: newId };
 
@@ -230,7 +224,6 @@ app.post("/add-new-card", (req, res) => {
     },
   });
 
-  // Send the new card object back to the client
   res.json(newCardWithId);
 });
 
@@ -255,7 +248,7 @@ app.put("/cards/:id", (req, res) => {
       _id: req.params.id,
     };
     cards[cardIndex] = updatedCard;
-    console.log(updatedCard);
+
     res.json(updatedCard);
   }
 });
@@ -276,25 +269,22 @@ app.patch("/cards/:id", (req, res) => {
         : [...card.likes, user_id];
       const updatedCard = { ...card, likes: updatedLikes };
       cards[cardIndex] = updatedCard;
-      console.log(cards);
+
       res.json(updatedCard);
     } else {
-      res.status(404).send("Log in first");
+      res.status(404).send("in first");
     }
   }
 });
 app.post("/users/login", (req, res) => {
-  console.log(req.body);
-
   const { email, password } = req.body;
   const user = users.find((u) => u.email === email && u.password === password);
 
   if (!user) {
-    // User not found or password incorrect
     res.status(401).json({ message: "Invalid email or password" });
     return;
   }
-  // User found, so generate a new token and send it back
+
   const userDataForToken = {
     isAdmin: user.isAdmin,
     isBusiness: user.isBusiness,

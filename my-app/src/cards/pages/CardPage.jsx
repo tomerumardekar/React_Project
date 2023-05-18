@@ -11,7 +11,7 @@ export default function CardPage() {
   const navigate = useNavigate();
   const { value, handleGetCards, handleDeleteCard } = useCards();
   const { error, isLoading, filterCards } = value;
-  console.log(filterCards);
+
   useEffect(() => {
     handleGetCards();
   }, []);

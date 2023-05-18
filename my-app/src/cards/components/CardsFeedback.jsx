@@ -3,8 +3,7 @@ import React from "react";
 import Error from "../../components/Error";
 import Spinner from "../../components/Spinner";
 import Cards from "./Cards";
-import { bool, func, object, string } from "prop-types";
-import { arrayOf } from "prop-types";
+import { bool, func, object, string, arrayOf, oneOfType } from "prop-types";
 
 function CardsFeedback({ isLoading, cards, error, handleDelete, onLike }) {
   if (isLoading) return <Spinner />;
@@ -23,9 +22,10 @@ function CardsFeedback({ isLoading, cards, error, handleDelete, onLike }) {
 
 CardsFeedback.propTypes = {
   isLoading: bool.isRequired,
-  error: string,
+  error: oneOfType([string, object]),
   cards: arrayOf(object),
-  handleDelete: func.isRequired,
+  handleDelete: func,
+  onLike: func,
 };
 
 export default React.memo(CardsFeedback);

@@ -76,7 +76,7 @@ export default function CardActionBar({
       </CardActions>
       <CardDeleteDialog
         isDialogOpen={isDialogOpen}
-        onChangeDialog={handleDialog}
+        onChangeDialog={() => handleDialog()}
         onDelete={handleDeleteCard}
       />
     </>
@@ -84,6 +84,6 @@ export default function CardActionBar({
 }
 
 CardActionBar.propTypes = {
-  handleDelete: func.isRequired,
+  /*  handleDelete: func.isRequired, */
   _id: string.isRequired,
 };
