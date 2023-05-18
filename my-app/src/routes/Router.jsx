@@ -5,8 +5,7 @@ import CardPage from "../cards/pages/CardPage";
 import FAV_CARDS from "../cards/pages/FAV_CARDS";
 import AboutPage from "../pages/AboutPage";
 import ErrorPage from "../pages/ErrorPage";
-/* import MyForm from "../sandbox/forms/MyForm"; */
-/* import TestForm from "../sandbox/forms/TestForm"; */
+
 import LoginPage from "../users/pages/LoginPage";
 import SignupPage from "../users/pages/SignupPage";
 import ROUTES from "./routesModel";
