@@ -5,8 +5,8 @@ import CardPage from "../cards/pages/CardPage";
 import FAV_CARDS from "../cards/pages/FAV_CARDS";
 import AboutPage from "../pages/AboutPage";
 import ErrorPage from "../pages/ErrorPage";
-import MyForm from "../sandbox/forms/MyForm";
-import TestForm from "../sandbox/forms/TestForm";
+/* import MyForm from "../sandbox/forms/MyForm"; */
+/* import TestForm from "../sandbox/forms/TestForm"; */
 import LoginPage from "../users/pages/LoginPage";
 import SignupPage from "../users/pages/SignupPage";
 import ROUTES from "./routesModel";
@@ -28,8 +28,6 @@ export default function Router() {
       <Route path={`${ROUTES.CARD_INFO}/:id`} element={<CardDetailsPage />} />
       <Route path="favcards" element={<FAV_CARDS />} />
       <Route path="mycards" element={<MyCards />} />
-      <Route path="test" element={<MyForm />} />
-      <Route path="form" element={<TestForm />} />
       <Route path="addNewCard" element={<AddNewCard />} />
       <Route path="profilePage" element={<ProfilePage />} />
       <Route path="*" element={<ErrorPage />} />
