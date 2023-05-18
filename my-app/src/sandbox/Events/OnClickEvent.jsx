@@ -3,7 +3,7 @@ import React from "react";
 
 export default function OnClickEvent({ handleClick }) {
   const handleChange = (e) => {
-    console.log(e.target.value);
+    .log(e.target.value);
   };
 
   return (

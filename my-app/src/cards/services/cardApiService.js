@@ -73,7 +73,6 @@ export const handleSubmit = async (newCard, setSuccessMessage) => {
       newCard
     );
     setSuccessMessage("New card added successfully!");
-    console.log(response.data);
   } catch (error) {
     console.error(error);
   }

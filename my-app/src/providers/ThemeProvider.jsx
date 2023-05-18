@@ -18,7 +18,6 @@ export default function ThemeProvider({ children }) {
 
   const toggleDarkMode = useCallback(() => {
     setDark((prev) => !prev);
-    console.log(isDark);
   }, [isDark, setDark]);
 
   const theme = createTheme({

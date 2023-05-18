@@ -9,13 +9,8 @@ export default function ShowData() {
 
   const [counter, setCounter] = useState(0);
 
-  const showData = useCallback(() => {
-    console.log(first.current.value);
-    console.log(second.current.value);
-  }, []);
+  const showData = useCallback(() => {}, []);
   const showDataCapital = useCallback(() => {
-    console.log(first.current.value.toUpperCase());
-    console.log(second.current.value.toUpperCase());
     setCounter((prev) => prev + 1);
   }, []);
   const doSomething = useMemo(() => {

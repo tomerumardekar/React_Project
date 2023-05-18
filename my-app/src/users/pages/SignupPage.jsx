@@ -19,7 +19,7 @@ export default function SignupPage() {
   const { user } = useUser();
 
   if (user) return <Navigate replace to={ROUTES.CARDS} />;
-  console.log(user);
+
   return (
     <Container
       sx={{
