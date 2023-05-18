@@ -37,17 +37,34 @@ export default function ProfilePage() {
   };
 
   return (
-    <Container maxWidth="sm">
+    <Container
+      maxWidth="sm"
+      sx={{
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "center",
+        justifyContent: "center",
+        height: "70vh", // Center the container vertically on the page
+      }}
+    >
       <Box
         sx={{
           display: "flex",
           flexDirection: "column",
           alignItems: "center",
           mt: 4,
+          textAlign: "center",
         }}
       >
         <Avatar
-          sx={{ width: 128, height: 128, mb: 2, p: 0.5, mt: 3 }}
+          sx={{
+            width: 180,
+            height: 180,
+            mb: 2,
+            p: 0.5,
+            mt: 3,
+            alignSelf: "center",
+          }}
           alt="Profile Picture"
           src="/assets/images/avatar.png"
         />
@@ -124,16 +141,40 @@ export default function ProfilePage() {
             >
               Edit
             </button>
-            <Typography variant="body1" gutterBottom>
+            <Typography
+              variant="body1"
+              style={{
+                fontSize: "1.2rem",
+              }}
+              gutterBottom
+            >
               <strong>Full Name:</strong> {fullName}
             </Typography>
-            <Typography variant="body1" gutterBottom>
+            <Typography
+              variant="body1"
+              style={{
+                fontSize: "1.2rem",
+              }}
+              gutterBottom
+            >
               <strong>Email:</strong> {email}
             </Typography>
-            <Typography variant="body1" gutterBottom>
+            <Typography
+              variant="body1"
+              style={{
+                fontSize: "1.2rem",
+              }}
+              gutterBottom
+            >
               <strong>Username:</strong> {username}
             </Typography>
-            <Typography variant="body1" gutterBottom>
+            <Typography
+              variant="body1"
+              style={{
+                fontSize: "1.2rem",
+              }}
+              gutterBottom
+            >
               <strong>Password:</strong> {password.replace(/./g, "*")}
             </Typography>
           </>
