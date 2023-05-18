@@ -20,7 +20,6 @@ export default function LeftNavBar() {
               Home
             </span>
           }
-          /*  sx={{ color: "inherit" }} */
         />
 
         <NavItem to={ROUTES.CARDS} label="Cards" />
@@ -28,7 +27,6 @@ export default function LeftNavBar() {
 
         {user?.isBusiness && <NavItem to={ROUTES.MY_CARDS} label="My cards" />}
         {user && <NavItem to={ROUTES.FAV_CARDS} label="Favorite Cards" />}
-        {user?.isAdmin && <NavItem to={ROUTES.SANDBOX} label="Sandbox" />}
       </Box>
     </Box>
   );
