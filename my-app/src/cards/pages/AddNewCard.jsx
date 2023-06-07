@@ -9,12 +9,22 @@ import initialCardForm from "../helpers/initialForms/initialCardForm";
 import cardSchema from "../models/joi-schema/cardSchema";
 
 import { handleSubmit } from "../services/cardApiService";
+import useCards from "../hooks/useCards";
+import normalizeCard from "../helpers/normalization/normalizeCard";
+import { useUser } from "../../users/providers/UserProvider";
 
 export default function AddNewCard() {
   const [successMessage, setSuccessMessage] = useState("");
-
+  const { handleCreateCard } = useCards();
+  const { user } = useUser();
+  console.log(user);
   const handleAddNewCard = async (newCard) => {
-    await handleSubmit(newCard, setSuccessMessage);
+    await handleCreateCard({
+      ...normalizeCard(newCard),
+      user_id: user.id,
+      BusinessNumber: newCard.BusinessNumber,
+      likes: [],
+    });
   };
 
   const handleSnackbarClose = () => {

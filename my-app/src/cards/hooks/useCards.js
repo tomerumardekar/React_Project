@@ -12,7 +12,8 @@ import {
   getCards,
   getMyCards,
 } from "../services/cardApiService";
-import { useSearchParams } from "react-router-dom";
+import { useNavigate, useSearchParams } from "react-router-dom";
+import ROUTES from "../../routes/routesModel";
 
 export default function useCards() {
   const [cards, setCards] = useState([]);
@@ -22,6 +23,7 @@ export default function useCards() {
   const [query, setQuery] = useState("");
   const [searchParams] = useSearchParams();
   const [filterCards, setFilter] = useState([]);
+  const navigate = useNavigate();
   useAxios();
   const snack = useSnack();
   const { user } = useUser();
@@ -148,6 +150,7 @@ export default function useCards() {
       const card = await createCard(cardFromClient);
       requestStatus(false, null, null, card);
       snack("success", "A new business card has been created");
+      navigate(ROUTES.CARDS);
     } catch (error) {
       requestStatus(false, error, null);
     }
