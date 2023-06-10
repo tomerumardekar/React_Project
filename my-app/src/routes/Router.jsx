@@ -14,6 +14,7 @@ import AddNewCard from "../cards/pages/AddNewCard";
 import ProfilePage from "../cards/pages/ProfilePage";
 import HomePage from "../cards/pages/HomePage";
 import MyCards from "../cards/pages/MyCards";
+import EditUserPage from "../users/pages/EditUserPage";
 export default function Router() {
   return (
     <Routes>
@@ -29,6 +30,7 @@ export default function Router() {
       <Route path="mycards" element={<MyCards />} />
       <Route path="addNewCard" element={<AddNewCard />} />
       <Route path="profilePage" element={<ProfilePage />} />
+      <Route path="editProfile" element={<EditUserPage />} />
       <Route path="*" element={<ErrorPage />} />
     </Routes>
   );

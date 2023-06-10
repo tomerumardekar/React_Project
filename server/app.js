@@ -178,9 +178,69 @@ app.get("/cards/:cardId", (req, res) => {
     res.json(card);
   }
 });
+
 app.get("/users", (req, res) => {
   res.json(users);
 });
+
+/* app.get("/profilePage", (req, res) => {
+  // Here, you would implement the logic to retrieve the user's information based on their authentication credentials
+  const users = [
+    {
+      name: {
+        first: "Tzach",
+        middle: "",
+        last: "Dabush",
+      },
+      phone: "055-5555555",
+      email: "admin@admin.com",
+      password: "Abc123!",
+      address: {
+        state: "Haifa",
+        country: "Israel",
+        city: "Haifa",
+        street: "HaNasi",
+        zip: 123456,
+        houseNumber: 12,
+      },
+      image: {
+        url: "www.example.com",
+        alt: "profile image",
+      },
+      isBusiness: true,
+      isAdmin: true,
+      user_id: "4235234234mfnjrb2h3vbry23",
+    },
+    {
+      name: {
+        first: "Tzach1",
+        middle: "",
+        last: "Dabush1",
+      },
+      phone: "055-5555555",
+      email: "admin1@admin.com",
+      password: "Abc123!",
+      address: {
+        state: "Haifa",
+        country: "Israel",
+        city: "Haifa",
+        street: "HaNasi",
+        zip: 123456,
+        houseNumber: 12,
+      },
+      image: {
+        url: "www.example.com",
+        alt: "profile image",
+      },
+      isBusiness: true,
+      isAdmin: false,
+      user_id: "4235234234mfnjasdasdry23",
+    },
+  ];
+
+  res.json(users);
+}); */
+
 app.post("/cards", (req, res) => {
   const newId = Date.now().toString();
   const newCardWithId = { ...req.body, _id: newId };
@@ -291,17 +351,40 @@ app.post("/users/login", (req, res) => {
     firstName: user.name.first,
     id: user.user_id,
     iat: new Date().getTime(),
+    ...user,
   };
   const token = jwt.sign(userDataForToken, key);
   res.send(token);
 });
 
 app.post("/users", (req, res) => {
+  console.log(req.body);
+  if (users.findIndex((user) => user.user_id === req.body.user_id) === -1) {
+    const newUser = req.body;
+    newUser.user_id = uuidv4(); // generate a new UUID and add it to the newUser object
+    users.push(newUser);
+
+    console.log(users);
+
+    res.status(201).send({ message: "User added successfully." });
+  } else {
+    console.log("hii");
+    const index = users.findIndex((user) => user.user_id === req.body.user_id);
+
+    users[index] = req.body;
+
+    console.log(index, users);
+
+    res.status(201).send({ message: "User updated successfully." });
+  }
+});
+
+/* app.post("/users", (req, res) => {
   const newUser = req.body;
   newUser.user_id = uuidv4(); // generate a new UUID and add it to the newUser object
   users.push(newUser);
   res.status(201).send({ message: "User added successfully." });
-});
+}); */
 
 const PORT = 8181;
 app.listen(PORT, () => console.log(`server listening on port ${PORT}`));

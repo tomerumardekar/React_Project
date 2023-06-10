@@ -20,6 +20,7 @@ const normalizeUser = (user) => ({
     alt: user.alt,
   },
   isBusiness: user.isBusiness,
+  /*  user_id: user.user_id, */
 });
 
 export default normalizeUser;

@@ -20,3 +20,12 @@ export const signup = async (normalizedUser) => {
     return Promise.reject(error.message);
   }
 };
+
+export const updateUser = async (normalizedUser) => {
+  try {
+    const { data } = await axios.post(`${apiUrl}/users`, normalizedUser);
+    return data;
+  } catch (error) {
+    return Promise.reject(error.message);
+  }
+};

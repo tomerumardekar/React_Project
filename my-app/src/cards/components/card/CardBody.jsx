@@ -31,11 +31,3 @@ export default function CardBody({
     </>
   );
 }
-
-CardBody.propTypes = {
-  title: string.isRequired,
-  subtitle: string.isRequired,
-  phone: string.isRequired,
-  address: addressType.isRequired,
-  cardNumber: number,
-};

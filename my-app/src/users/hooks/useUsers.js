@@ -1,6 +1,6 @@
 import { useState, useCallback, useMemo } from "react";
 import useAxios from "../../hooks/useAxios";
-import { login, signup } from "../services/usersApiService";
+import { login, signup, updateUser } from "../services/usersApiService";
 import {
   getUser,
   removeToken,
@@ -66,6 +66,28 @@ const useUsers = () => {
     [requestStatus, handleLogin]
   );
 
+  const handleUpdateUser = useCallback(async (updatedUserFromClient) => {
+    console.log(user?.user_id);
+    try {
+      const normalizedUser = normalizeUser(updatedUserFromClient);
+      setTimeout(1000);
+      await updateUser({
+        ...normalizedUser,
+        user_id: await user.user_id,
+
+        isAdmin: await user.isAdmin,
+      });
+      setUser({
+        ...normalizedUser,
+        user_id: await user.user_id,
+        isAdmin: await user.isAdmin,
+      });
+    } catch (error) {
+      console.log(error);
+      requestStatus(false, error, null);
+    }
+  }, []);
+
   const value = useMemo(
     () => ({ isLoading, error, user }),
     [isLoading, error, user]
@@ -76,6 +98,7 @@ const useUsers = () => {
     handleLogin,
     handleLogout,
     handleSignup,
+    handleUpdateUser,
   };
 };
 

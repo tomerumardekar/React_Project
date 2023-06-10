@@ -1,11 +1,15 @@
 import { useState, useCallback, useMemo } from "react";
 import { object, func } from "prop-types";
 import Joi from "joi";
+import ROUTES from "../../routes/routesModel";
+import { useNavigate } from "react-router-dom";
+import { useUser } from "../../users/providers/UserProvider";
 
 const useForm = (initialForm, schema, handleSubmit) => {
   const [data, setData] = useState(initialForm);
   const [errors, setErrors] = useState({});
-
+  const goTo = useNavigate();
+  const { user } = useUser();
   const handleReset = useCallback(() => {
     setData(initialForm);
     setErrors({});
@@ -46,8 +50,17 @@ const useForm = (initialForm, schema, handleSubmit) => {
     return null;
   }, [schema, data]);
 
+  /*   const onSubmit = useCallback(() => {
+    handleSubmit(data);
+  }, [handleSubmit, data]); */
+
   const onSubmit = useCallback(() => {
     handleSubmit(data);
+    if (user) {
+      setTimeout(() => {
+        /*   goTo(ROUTES.CARDS); */
+      }, 100);
+    }
   }, [handleSubmit, data]);
 
   const value = useMemo(() => {
