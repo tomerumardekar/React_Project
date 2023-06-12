@@ -28,8 +28,6 @@ export default function EditUserPage() {
     }
   }, [user]);
 
-  /*  (!user) return <Navigate replace to={ROUTES.CARDS} />; */
-
   return (
     <Container
       sx={{

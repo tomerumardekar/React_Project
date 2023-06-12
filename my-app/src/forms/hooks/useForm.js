@@ -50,10 +50,6 @@ const useForm = (initialForm, schema, handleSubmit) => {
     return null;
   }, [schema, data]);
 
-  /*   const onSubmit = useCallback(() => {
-    handleSubmit(data);
-  }, [handleSubmit, data]); */
-
   const onSubmit = useCallback(() => {
     handleSubmit(data);
     if (user) {
