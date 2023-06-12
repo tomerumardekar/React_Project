@@ -57,11 +57,17 @@ const Menu = ({ isOpen, anchorEl, onClose }) => {
         {user && (
           <>
             <MenuLink
-              text="profile"
+              text="Profile"
               navigateTo={ROUTES.USER_PROFILE}
               onClick={onClose}
             />
 
+            <MenuLink
+              text="Edit Profile"
+              navigateTo={ROUTES.USER_EDITPROFILE}
+              onClick={onClose}
+            />
+            <></>
             <MenuItem onClick={onLogout}>Logout</MenuItem>
           </>
         )}

@@ -73,7 +73,7 @@ const useUsers = () => {
       setTimeout(1000);
       await updateUser({
         ...normalizedUser,
-        user_id: await user.user_id,
+        user_id: await user.id,
 
         isAdmin: await user.isAdmin,
       });
