@@ -183,64 +183,6 @@ app.get("/users", (req, res) => {
   res.json(users);
 });
 
-/* app.get("/profilePage", (req, res) => {
-  // Here, you would implement the logic to retrieve the user's information based on their authentication credentials
-  const users = [
-    {
-      name: {
-        first: "Tzach",
-        middle: "",
-        last: "Dabush",
-      },
-      phone: "055-5555555",
-      email: "admin@admin.com",
-      password: "Abc123!",
-      address: {
-        state: "Haifa",
-        country: "Israel",
-        city: "Haifa",
-        street: "HaNasi",
-        zip: 123456,
-        houseNumber: 12,
-      },
-      image: {
-        url: "www.example.com",
-        alt: "profile image",
-      },
-      isBusiness: true,
-      isAdmin: true,
-      user_id: "4235234234mfnjrb2h3vbry23",
-    },
-    {
-      name: {
-        first: "Tzach1",
-        middle: "",
-        last: "Dabush1",
-      },
-      phone: "055-5555555",
-      email: "admin1@admin.com",
-      password: "Abc123!",
-      address: {
-        state: "Haifa",
-        country: "Israel",
-        city: "Haifa",
-        street: "HaNasi",
-        zip: 123456,
-        houseNumber: 12,
-      },
-      image: {
-        url: "www.example.com",
-        alt: "profile image",
-      },
-      isBusiness: true,
-      isAdmin: false,
-      user_id: "4235234234mfnjasdasdry23",
-    },
-  ];
-
-  res.json(users);
-}); */
-
 app.post("/cards", (req, res) => {
   const newId = Date.now().toString();
   const newCardWithId = { ...req.body, _id: newId };
@@ -368,7 +310,6 @@ app.post("/users", (req, res) => {
 
     res.status(201).send({ message: "User added successfully." });
   } else {
-    console.log("hii");
     const index = users.findIndex((user) => user.user_id === req.body.user_id);
 
     users[index] = req.body;

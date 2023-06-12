@@ -67,7 +67,7 @@ const useUsers = () => {
   );
 
   const handleUpdateUser = useCallback(async (updatedUserFromClient) => {
-    console.log(user?.user_id);
+    console.log(updatedUserFromClient);
     try {
       const normalizedUser = normalizeUser(updatedUserFromClient);
       setTimeout(1000);
@@ -77,10 +77,9 @@ const useUsers = () => {
 
         isAdmin: await user.isAdmin,
       });
-      setUser({
-        ...normalizedUser,
-        user_id: await user.user_id,
-        isAdmin: await user.isAdmin,
+      await handleLogin({
+        email: updatedUserFromClient.email,
+        password: updatedUserFromClient.password,
       });
     } catch (error) {
       console.log(error);
