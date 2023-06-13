@@ -148,14 +148,16 @@ const UserForm = ({
         required={false}
       />
       <Grid item>
-        <FormControlLabel
-          onChange={(e) => {
-            setData({ ...data, isBusiness: !!e.target.checked });
-          }}
-          name="isBusiness"
-          control={<Checkbox value={data.isBusiness} color="primary" />}
-          label="Signup as business"
-        />
+        {
+          <FormControlLabel
+            onChange={(e) => {
+              setData({ ...data, isBusiness: !!e.target.checked });
+            }}
+            name="isBusiness"
+            control={<Checkbox value={data.isBusiness} color="primary" />}
+            label="Signup as business"
+          />
+        }
       </Grid>
     </Form>
   );
