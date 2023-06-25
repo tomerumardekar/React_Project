@@ -1,6 +1,6 @@
 import { Container } from "@mui/material";
 import React, { useEffect, useState } from "react";
-import { Navigate, useParams } from "react-router-dom";
+import { Navigate, useParams, useNavigate } from "react-router-dom";
 import useForm from "../../forms/hooks/useForm";
 import ROUTES from "../../routes/routesModel";
 import { useUser } from "../../users/providers/UserProvider";
@@ -19,14 +19,16 @@ export default function EditCardPage() {
     handleGetCard,
     value: { card },
   } = useCards();
-
   const { user } = useUser();
+  const navigate = useNavigate(); // New line: get the navigate function from React Router
 
   const { value, ...rest } = useForm(initialCardForm, cardSchema, (data) => {
     handleUpdateCard(card._id, {
       ...normalizeCard(data),
       user_id: data.user_id,
       BusinessNumber: data.BusinessNumber,
+    }).then(() => {
+      navigate(ROUTES.CARDS); // Navigate to the "cards" page after the card is updated
     });
   });
 
@@ -37,6 +39,7 @@ export default function EditCardPage() {
       setCardData(modelCard);
     });
   }, []);
+
   if (!user) return <Navigate replace to={ROUTES.CARDS} />;
 
   return (

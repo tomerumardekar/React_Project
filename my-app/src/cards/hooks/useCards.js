@@ -114,7 +114,7 @@ export default function useCards() {
     try {
       const card = await changeLikeStatus(cardId, isLiked);
 
-      requestStatus(false, null, cards, card);
+      /*   requestStatus(false, null, cards, card); */
       snack(
         "success",
         !isLiked
@@ -124,7 +124,7 @@ export default function useCards() {
     } catch (error) {
       requestStatus(false, error, null);
     }
-  });
+  }, []);
 
   //handleGetFavCards
   const handleGetFavCards = useCallback(async () => {
@@ -159,6 +159,7 @@ export default function useCards() {
 
   return {
     value,
+    setCards,
     getCard,
     handleGetCards,
     handleGetMyCards,

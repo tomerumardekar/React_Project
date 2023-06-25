@@ -16,24 +16,16 @@ export default function CardActionBar({
   _id,
   user_id,
   cardLikes,
+  onLike,
 }) {
   const navigate = useNavigate();
   const { user } = useUser();
-  const { handleLikeCard } = useCards();
+
   const [isDialogOpen, setDialog] = useState(false);
 
   const [isLiked, setLiked] = useState(
     user && cardLikes ? () => !!cardLikes.find((_id) => _id === user.id) : null
   );
-
-  /* const changeLike = () =>
-    likes.findIndex((userId) => userId === user?.id) !== -1
-      ? setIsLiked(true)
-      : setIsLiked(false);
-
-  useEffect(() => {
-    changeLike();
-  }, []); */
 
   const handleDialog = (term) => {
     if (term === "open") return setDialog(true);
@@ -47,7 +39,7 @@ export default function CardActionBar({
 
   const handleLike = async () => {
     setLiked((prev) => !prev);
-    await handleLikeCard(_id, isLiked);
+    await onLike(_id, isLiked);
   };
 
   return (

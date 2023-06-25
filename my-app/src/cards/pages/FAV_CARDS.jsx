@@ -8,7 +8,7 @@ import CardsFeedback from "../components/CardsFeedback";
 export default function FAV_CARDS() {
   const { value, ...rest } = useCards();
   const { isLoading, error, cards } = value;
-  const { handleDeleteCard, handleGetFavCards } = rest;
+  const { handleDeleteCard, handleGetFavCards, handleLikeCard } = rest;
 
   useEffect(() => {
     handleGetFavCards();
@@ -22,9 +22,13 @@ export default function FAV_CARDS() {
     [handleDeleteCard, handleGetFavCards]
   );
 
-  const changeLikeStatus = useCallback(async () => {
-    await handleGetFavCards();
-  }, []);
+  const changeLikeStatus = useCallback(
+    async (id, isLike) => {
+      await handleLikeCard(id, isLike);
+      await handleGetFavCards();
+    },
+    [handleLikeCard, handleGetFavCards]
+  );
 
   return (
     <Container>

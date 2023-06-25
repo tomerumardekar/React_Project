@@ -6,9 +6,11 @@ import ROUTES from "../../routes/routesModel";
 import { useUser } from "../../users/providers/UserProvider";
 import CardsFeedback from "../components/CardsFeedback";
 import useCards from "../hooks/useCards";
+import { useCallback } from "react";
 
 export default function MyCards() {
-  const { value, handleGetMyCards, handleDeleteCard } = useCards();
+  const { value, handleGetMyCards, handleDeleteCard, handleLikeCard } =
+    useCards();
   const { error, isLoading, cards } = value;
   const { user } = useUser();
   const navigate = useNavigate();
@@ -26,6 +28,13 @@ export default function MyCards() {
     await handleGetMyCards();
   };
 
+  const changeLikeStatus = useCallback(
+    async (id, isLike) => {
+      await handleLikeCard(id, isLike);
+    },
+    [handleLikeCard]
+  );
+
   return (
     <div>
       <Container sx={{ mt: 2 }}>
@@ -38,6 +47,7 @@ export default function MyCards() {
           error={error}
           cards={cards}
           handleDelete={handleDelete}
+          onLike={changeLikeStatus}
         />
       </Container>
     </div>
