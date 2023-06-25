@@ -7,5 +7,5 @@ const PORT = 8181;
 app.use(cors);
 
 app.listen(PORT, () => {
-  console.log(chalk.yellow("the server is listening to port" + PORT));
+  console.log(chalk.yellow("the server is listening to port " + PORT));
 });
