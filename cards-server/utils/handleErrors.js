@@ -1,14 +1,16 @@
 const chalk = require("chalk");
 
-const handleError = (res, status, message) => {
-  console.log(
-    chalk.yellowBright(
-      `There was an error with status ${status} and the error is ${message}`
-    )
-  );
-  res.status(status).send(message);
+const handleError = (res, status, message = "") => {
+  console.log(chalk.redBright(message));
+  return res.status(status).send(message);
 };
 
-module.exports = handleError;
+const createError = (validator, error) => {
+  const errorMessage = `${validator} Error: ${error.message}`;
+  error.message = errorMessage;
+  error.status = error.status || 400;
+  return Promise.reject(error);
+};
 
-const createError = (validator, error) => {};
+exports.handleError = handleError;
+exports.createError = createError;
