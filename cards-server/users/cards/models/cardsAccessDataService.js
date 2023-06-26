@@ -84,6 +84,28 @@ const likeCard = async (cardId, userId) => {
     }
 };
 
+const deleteCard = async (cardId, userId, isAdmin) => {
+  try {
+    let card = await Card.findById(cardId);
+
+    // Check if the card exists
+    if (!card) {
+      console.log("Card not found");
+      return;
+    }
+
+    // Check if the user is an admin or the owner of the card
+    if (isAdmin || card.userId === userId) {
+      const deletedCard = await Card.findByIdAndDelete(cardId);
+      console.log("The card deleted is", deletedCard);
+    } else {
+      console.log("Unauthorized to delete this card");
+    }
+  } catch (error) {
+    console.log("There was an error deleting this card:", error);
+  }
+};
+
 exports.createCard = createCard;
 exports.getCards = getCards;
 exports.getCard = getCard;
