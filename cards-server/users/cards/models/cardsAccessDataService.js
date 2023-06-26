@@ -7,7 +7,7 @@ const createCard = async (normalizedCard) => {
     try {
       let card = new Card(normalizedCard);
       await card.save();
-      console.log(card);
+      return Promise.resolve(card);
     } catch (error) {
       console.log(error);
     }
@@ -17,7 +17,7 @@ const getCards = async () => {
   if (DB == "MONGODB")
     try {
       const cards = await Card.find();
-      console.log(cards);
+      return Promise.resolve(card);
     } catch (error) {
       console.log(error);
     }
@@ -27,7 +27,7 @@ const getCard = async (cardId) => {
   if (DB == "MONGODB")
     try {
       const card = await Card.findById(cardId);
-      console.log(card);
+      return Promise.resolve(card);
     } catch (error) {
       console.log(error);
     }
@@ -37,7 +37,7 @@ const getMyCards = async (userId) => {
   if (DB == "MONGODB")
     try {
       let cards = await Card.find({ user_id: userId });
-      console.log(cards);
+      return Promise.resolve(card);
     } catch (error) {
       console.log(error);
     }
@@ -52,7 +52,7 @@ const updateCard = async (cardId, normalizedCard) => {
       if (!card) {
         throw new Error("The card with this id didnt found");
       }
-      console.log(card);
+      return Promise.resolve(card);
     } catch (error) {
       console.log(error);
     }
@@ -78,7 +78,7 @@ const likeCard = async (cardId, userId) => {
           { new: true }
         );
       }
-      console.log(card);
+      return Promise.resolve(card);
     } catch (error) {
       console.log(error);
     }
