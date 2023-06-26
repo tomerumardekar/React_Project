@@ -88,13 +88,11 @@ const deleteCard = async (cardId, userId, isAdmin) => {
   try {
     let card = await Card.findById(cardId);
 
-    // Check if the card exists
     if (!card) {
       console.log("Card not found");
       return;
     }
 
-    // Check if the user is an admin or the owner of the card
     if (isAdmin || card.userId === userId) {
       const deletedCard = await Card.findByIdAndDelete(cardId);
       console.log("The card deleted is", deletedCard);
@@ -106,6 +104,7 @@ const deleteCard = async (cardId, userId, isAdmin) => {
   }
 };
 
+exports.deleteCard = deleteCard;
 exports.createCard = createCard;
 exports.getCards = getCards;
 exports.getCard = getCard;
