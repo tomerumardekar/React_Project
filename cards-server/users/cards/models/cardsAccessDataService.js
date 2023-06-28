@@ -4,14 +4,17 @@ const Card = require("./mongodb/card");
 const DB = "MONGODB";
 
 const createCard = async (normalizedCard) => {
-  if (DB == "MONGODB")
+  if (DB == "MONGODB") {
     try {
       let card = new Card(normalizedCard);
       await card.save();
       return Promise.resolve(card);
     } catch (error) {
-      return createError("createCard", error);
+      return createError("mongoose", error);
     }
+  } else {
+    Promise.resolve("Cards Not found");
+  }
 };
 
 const getCards = async () => {
@@ -28,27 +31,34 @@ const getCards = async () => {
 };
 
 const getCard = async (cardId) => {
-  if (DB == "MONGODB")
+  if (DB == "MONGODB") {
     try {
       const card = await Card.findById(cardId);
+      if (!card) throw new Error("The card with this id didnt found");
       return Promise.resolve(card);
     } catch (error) {
-      throw new Error("The card with this id didnt found");
+      return createError("mongoose", error);
     }
+  } else {
+    Promise.resolve("Cards Not found");
+  }
 };
 
 const getMyCards = async (userId) => {
-  if (DB == "MONGODB")
+  if (DB == "MONGODB") {
     try {
-      let cards = await Card.find({ user_id: userId });
-      return Promise.resolve(card);
+      let myCards = await Card.find({ user_id: userId });
+      return Promise.resolve(myCards);
     } catch (error) {
-      console.log(error);
+      return createError("mongoose", error);
     }
+  } else {
+    Promise.resolve("Cards Not found");
+  }
 };
 
 const updateCard = async (cardId, normalizedCard) => {
-  if (DB == "MONGODB")
+  if (DB == "MONGODB") {
     try {
       let card = await Card.findByIdAndUpdate(cardId, normalizedCard, {
         new: true,
@@ -58,8 +68,11 @@ const updateCard = async (cardId, normalizedCard) => {
       }
       return Promise.resolve(card);
     } catch (error) {
-      console.log(error);
+      return createError("mongoose", error);
     }
+  } else {
+    Promise.resolve("Cards Not found");
+  }
 };
 
 const likeCard = async (cardId, userId) => {
@@ -78,28 +91,32 @@ const likeCard = async (cardId, userId) => {
       await card.save();
       return Promise.resolve(card);
     } catch (error) {
-      console.log(error);
+      return createError("mongoose", error);
     }
+  } else {
+    Promise.resolve("Cards Not found");
   }
 };
-const deleteCard = async (cardId, userId, isAdmin) => {
-  try {
-    let card = await Card.findById(cardId);
 
-    if (!card) {
-      console.log("Card not found");
-      return;
-    }
+const deleteCard = async (cardId, user) => {
+  if (DB === "MONGODB") {
+    try {
+      let card = await Card.findById(cardId);
 
-    if (isAdmin || card.userId === userId) {
-      const deletedCard = await Card.findByIdAndDelete(cardId);
-      console.log("The card deleted is", deletedCard);
-    } else {
-      console.log("Unauthorized to delete this card");
+      if (!card)
+        throw new Error("A card with this ID cannot be found in the database");
+
+      if (!user.isAdmin && user._id !== card.user_id)
+        throw new Error(
+          "Authorization Error: Only the user who created the business card or admin can delete this card"
+        );
+      card = await Card.findByIdAndDelete(cardId);
+      return Promise.resolve(card);
+    } catch (error) {
+      return createError("Mongoose", error);
     }
-  } catch (error) {
-    console.log("There was an error deleting this card:", error);
   }
+  return Promise.resolve("card deleted not in mongodb");
 };
 
 exports.deleteCard = deleteCard;
