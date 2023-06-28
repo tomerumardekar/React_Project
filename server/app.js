@@ -1,4 +1,5 @@
 const express = require("express");
+const limiter = require("./utils/limiter");
 const cors = require("cors");
 const jwt = require("jsonwebtoken");
 const { v4: uuidv4 } = require("uuid"); // import uuidv4 function from the uuid package
@@ -278,7 +279,7 @@ app.patch("/cards/:id", (req, res) => {
     }
   }
 });
-app.post("/users/login", (req, res) => {
+app.post("/users/login", limiter, (req, res) => {
   const { email, password } = req.body;
   const user = users.find((u) => u.email === email && u.password === password);
 

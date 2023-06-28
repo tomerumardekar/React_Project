@@ -9,7 +9,7 @@ const createCard = async (normalizedCard) => {
       await card.save();
       return Promise.resolve(card);
     } catch (error) {
-      console.log(error);
+      return createError("createCard", error);
     }
 };
 
@@ -17,7 +17,7 @@ const getCards = async () => {
   if (DB == "MONGODB")
     try {
       const cards = await Card.find();
-      return Promise.resolve(card);
+      return Promise.resolve(cards);
     } catch (error) {
       console.log(error);
     }
@@ -29,7 +29,7 @@ const getCard = async (cardId) => {
       const card = await Card.findById(cardId);
       return Promise.resolve(card);
     } catch (error) {
-      console.log(error);
+      throw new Error("The card with this id didnt found");
     }
 };
 
@@ -59,31 +59,25 @@ const updateCard = async (cardId, normalizedCard) => {
 };
 
 const likeCard = async (cardId, userId) => {
-  if (DB == "MONGODB")
+  if (DB == "MONGODB") {
     try {
       let card = await Card.findById(cardId);
       if (!card)
         throw new Error("A card with this ID cannot be found in the database");
 
       if (card.likes.includes(userId)) {
-        card = await Card.findByIdAndUpdate(
-          cardId,
-          { $pull: { likes: userId } },
-          { new: true }
-        );
+        card.likes = card.likes.filter((like) => like !== userId);
       } else {
-        card = await Card.findByIdAndUpdate(
-          cardId,
-          { $push: { likes: userId } },
-          { new: true }
-        );
+        card.likes.push(userId);
       }
+
+      await card.save();
       return Promise.resolve(card);
     } catch (error) {
       console.log(error);
     }
+  }
 };
-
 const deleteCard = async (cardId, userId, isAdmin) => {
   try {
     let card = await Card.findById(cardId);
