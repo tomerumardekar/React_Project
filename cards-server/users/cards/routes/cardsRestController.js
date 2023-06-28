@@ -1,10 +1,11 @@
 const express = require("express");
 const { handleError } = require("../../../utils/handleErrors");
+const { getCards } = require("../models/cardsAccessDataService");
 const router = express.Router();
 
-router.get("/", (req, res) => {
+router.get("/", async (req, res) => {
   try {
-    const cards = {};
+    const cards = await getCards();
     return res.send(cards);
   } catch (error) {
     return handleError(res, error.status || 500, error.message);
@@ -58,3 +59,5 @@ router.post("/", async (req, res) => {
     return handleError(res, error.status || 500, error.message);
   }
 });
+
+module.exports = router;

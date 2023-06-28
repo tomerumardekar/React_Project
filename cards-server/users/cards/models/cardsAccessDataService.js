@@ -1,3 +1,4 @@
+const { createError } = require("../../../utils/handleErrors");
 const Card = require("./mongodb/card");
 
 const DB = "MONGODB";
@@ -14,13 +15,16 @@ const createCard = async (normalizedCard) => {
 };
 
 const getCards = async () => {
-  if (DB == "MONGODB")
+  if (DB == "MONGODB") {
     try {
       const cards = await Card.find();
       return Promise.resolve(cards);
     } catch (error) {
-      console.log(error);
+      return createError("mongoose", error);
     }
+  } else {
+    Promise.resolve("Cards Not found");
+  }
 };
 
 const getCard = async (cardId) => {
