@@ -7,6 +7,8 @@ const {
   createCard,
 } = require("../models/cardsAccessDataService");
 const normalizeCard = require("../helpers/normalizeCard");
+const cardValidationService = require("../validation/cardValidationService");
+
 const router = express.Router();
 
 router.get("/", async (req, res) => {
@@ -50,8 +52,11 @@ router.post("/", async (req, res) => {
     if (!user.isBusiness)
       return handleError(res, 403, "Authentication Error: Unauthorize user");
 
+    const validationError = cardValidationService(card);
+    if (validationError) {
+      return handleError(res, 400, validationError);
+    }
     card = await normalizeCard(card, user._id);
-
     card = await createCard(card);
     return res.status(201).send(card);
   } catch (error) {
@@ -75,7 +80,10 @@ router.put("/:id", async (req, res) => {
         return handleError(res, 403, message);
       }
     }
-
+    const validationError = cardValidationService(card);
+    if (validationError) {
+      return handleError(res, 400, validationError);
+    }
     card = await normalizeCard(card);
     card = await updateCard(cardId, card);
     return res.send(card);
