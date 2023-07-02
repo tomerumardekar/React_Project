@@ -1,17 +1,18 @@
 const User = require("./mongodb/User");
 const { createError } = require("../../../utils/handleErrors");
+const _ = require("lodash");
 const DB = "MONGODB";
 
 const registerUser = async (normalizedUser) => {
   if (DB == "MONGODB") {
     try {
-      //check if the email already exists
       const existingUser = await User.findOne({ email: normalizedUser.email });
       if (existingUser) {
         return Promise.resolve("Email already exists");
       }
       let user = new User(normalizedUser);
       await user.save();
+      user = _.pick(user, ["name", "email", "_id"]);
       return Promise.resolve(user);
     } catch (error) {
       return createError("mongoose", error);
@@ -21,12 +22,12 @@ const registerUser = async (normalizedUser) => {
   }
 };
 
-const loginUser = async (email, password) => {
+const loginUser = async ({ email, password }) => {
   if (DB === "MONGODB") {
     try {
       const user = await User.findOne({ email });
       if (!user) {
-        return Promise.resolve("User not found");
+        throw new Error("User not found");
       }
       const isPasswordValid = await user.comparePassword(password);
       if (!isPasswordValid) {
@@ -44,7 +45,7 @@ const loginUser = async (email, password) => {
 const getUsers = async () => {
   if (DB == "MONGODB") {
     try {
-      const users = await User.find();
+      const users = await User.find({}, { password: 0, _v: 0 });
       return Promise.resolve(users);
     } catch (error) {
       return createError("mongoose", error);
@@ -57,7 +58,7 @@ const getUsers = async () => {
 const getUser = async (userId) => {
   if (DB == "MONGODB") {
     try {
-      const user = await User.findById(userId);
+      const user = await User.findById(userId, { password: 0, _v: 0 });
       if (!user) throw new Error("The user with this id didnt found");
       return Promise.resolve(user);
     } catch (error) {
@@ -89,6 +90,10 @@ const updateUser = async (userId, normalizedUser) => {
 const changeUserBusinessStatus = async (userId, IsBusiness) => {
   if (DB == "MONGODB") {
     try {
+      let user = User.findById(userId);
+      user.isBusiness = !user.isBusiness;
+      user.save();
+      return Promise.resolve(`user`);
     } catch (error) {}
   }
 };
