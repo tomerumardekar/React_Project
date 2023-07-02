@@ -74,13 +74,13 @@ router.put("/:id", async (req, res) => {
       isBusiness: true,
       isAdmin: true,
     };
-    if (!user.isAdmin) {
-      if (user._id !== card.user_id) {
-        const message =
-          "Authorization Error: Only the user who created the business card can update its details";
-        return handleError(res, 403, message);
-      }
+
+    if (user._id !== card.user_id && !user.isAdmin) {
+      const message =
+        "Authorization Error: Only the user who created the business card can update its details";
+      return handleError(res, 403, message);
     }
+
     const validationError = validateCard(card);
     if (validationError) {
       return handleError(res, 400, "validationError");
