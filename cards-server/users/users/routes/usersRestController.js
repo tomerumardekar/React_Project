@@ -11,6 +11,7 @@ const {
 } = require("../models/usersAccessDataService");
 
 const normalizeUser = require("../helpers/normalizeUser");
+const auth = require("../../../auth/authService");
 const router = express.Router();
 
 router.post("/", async (req, res) => {
@@ -35,13 +36,9 @@ router.post("./login", async (req, res) => {
   }
 });
 
-router.get("/", async (req, res) => {
+router.get("/", auth, async (req, res) => {
   try {
-    const user = {
-      _id: "5f78c5a5e9a38b2e77c42345",
-      isBusiness: true,
-      isAdmin: true,
-    };
+    const user = req.user;
     if (!user.isAdmin)
       return handleError(
         res,
@@ -55,11 +52,11 @@ router.get("/", async (req, res) => {
   }
 });
 
-router.get("/:id", async (req, res) => {
+router.get("/:id", auth, async (req, res) => {
   try {
     const { id } = req.params;
-    let _id = "5f78c5a5e9a38b2e77c42345";
-    let isAdmin = true;
+    let _id = req.user._id;
+    let isAdmin = req.user.isAdmin;
     if (_id !== id && !isAdmin)
       return handleError(
         res,
@@ -73,10 +70,18 @@ router.get("/:id", async (req, res) => {
   }
 });
 
-router.put("/:id", async (req, res) => {
+router.put("/:id", auth, async (req, res) => {
   try {
     const { id } = req.params;
     let user = req.body;
+    let userInfo = req.user;
+    if (!userInfo.isAdmin && userInfo._id != id) {
+      handleError(
+        res,
+        403,
+        "You can not edit user details if its not you or you not admin"
+      );
+    }
     user = normalizeUser(user);
     user = await updateUser(id, user);
     return res.send(user);
@@ -85,9 +90,17 @@ router.put("/:id", async (req, res) => {
   }
 });
 
-router.patch("/:id", async (req, res) => {
+router.patch("/:id", auth, async (req, res) => {
   try {
     const { id } = req.params;
+    let userInfo = req.user;
+    if (!userInfo.isAdmin && userInfo._id != id) {
+      handleError(
+        res,
+        403,
+        "You can not edit user details if its not you or you not admin"
+      );
+    }
     const user = await changeUserBusinessStatus(id);
     return res.send(user);
   } catch (error) {
@@ -95,14 +108,21 @@ router.patch("/:id", async (req, res) => {
   }
 });
 
-router.delete("/id", async (req, res) => {
+router.delete("/:id", auth, async (req, res) => {
   try {
     const { id } = req.params;
+    let userInfo = req.user;
+    if (!userInfo.isAdmin && userInfo._id != id) {
+      handleError(
+        res,
+        403,
+        "You can not delete user if its not you or you not admin"
+      );
+    }
     const user = await deleteUser(id);
     return res.send(user);
   } catch (error) {
     return handleError(res, error.status || 500, error.message);
   }
 });
-
 module.exports = router;
