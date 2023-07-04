@@ -9,7 +9,7 @@ const {
 const normalizeCard = require("../helpers/normalizeCard");
 const cardValidationService = require("../validation/cardValidationService");
 const validateCard = require("../validation/cardValidationService");
-
+const auth = require("../../../auth/authService");
 const router = express.Router();
 
 router.get("/", async (req, res) => {
@@ -21,9 +21,9 @@ router.get("/", async (req, res) => {
   }
 });
 
-router.get("/my-cards", async (req, res) => {
+router.get("/my-cards", auth, async (req, res) => {
   try {
-    const userId = "5f78c5a5e9a38b2e77c42345";
+    const userId = req.user._id;
     const card = await getMyCards(userId);
     return res.send(card);
   } catch (error) {
@@ -41,14 +41,10 @@ router.get("/:id", async (req, res) => {
   }
 });
 
-router.post("/", async (req, res) => {
+router.post("/", auth, async (req, res) => {
   try {
     let card = req.body;
-    const user = {
-      _id: "5f78c5a5e9a38b2e77c42345",
-      isBusiness: true,
-      isAdmin: true,
-    };
+    const user = req.user;
 
     if (!user.isBusiness)
       return handleError(res, 403, "Authentication Error: Unauthorize user");
@@ -65,15 +61,11 @@ router.post("/", async (req, res) => {
   }
 });
 
-router.put("/:id", async (req, res) => {
+router.put("/:id", auth, async (req, res) => {
   try {
     let card = req.body;
     const cardId = req.params.id;
-    const user = {
-      _id: "5f78c5a5e9a38b2e77c42345",
-      isBusiness: true,
-      isAdmin: true,
-    };
+    const user = req.user;
 
     if (user._id !== card.user_id && !user.isAdmin) {
       const message =
@@ -93,10 +85,10 @@ router.put("/:id", async (req, res) => {
   }
 });
 
-router.patch("/:id", async (req, res) => {
+router.patch("/:id", auth, async (req, res) => {
   try {
     const cardId = req.params.id;
-    const userId = "5f78c5a5e9a38b2e77c42345";
+    const userId = req.user._id;
     const card = await likeCard(cardId, userId);
     return res.send(card);
   } catch (error) {
@@ -104,14 +96,10 @@ router.patch("/:id", async (req, res) => {
   }
 });
 
-router.delete("/:id", async (req, res) => {
+router.delete("/:id", auth, async (req, res) => {
   try {
     const cardId = req.params.id;
-    const user = {
-      _id: "5f78c5a5e9a38b2e77c42345",
-      isBusiness: true,
-      isAdmin: true,
-    };
+    const user = req.user;
     const card = await deleteCard(cardId, user);
     return res.send(card);
   } catch (error) {
