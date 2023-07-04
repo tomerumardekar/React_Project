@@ -12,11 +12,16 @@ const {
 
 const normalizeUser = require("../helpers/normalizeUser");
 const auth = require("../../../auth/authService");
+const validateUser = require("../validations/userValidationService");
 const router = express.Router();
 
 router.post("/", async (req, res) => {
   try {
     let user = req.body;
+    const validationError = validateUser(user);
+    if (validationError) {
+      return handleError(res, 400, "validationError");
+    }
     user = normalizeUser(user);
     user.password = generateUserPassword(user.password);
     user = await registerUser(user);
@@ -29,6 +34,10 @@ router.post("/", async (req, res) => {
 router.post("./login", async (req, res) => {
   try {
     let user = req.body;
+    const validationError = validateUser(user);
+    if (validationError) {
+      return handleError(res, 400, "validationError");
+    }
     const token = await loginUser(user);
     return res.send(token);
   } catch (error) {
