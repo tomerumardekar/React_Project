@@ -1,7 +1,7 @@
 const express = require("express");
 const cardsRestController = require("../cards/routes/cardsRestController");
 const usersRestController = require("../users/routes/usersRestController");
-const { handleError } = require("../utils/handleErrors");
+const { handleError } = require("../../utils/handleErrors");
 const router = express.Router();
 
 router.use("/cards", cardsRestController);

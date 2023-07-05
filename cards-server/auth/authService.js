@@ -4,6 +4,7 @@ const { verifyToken } = require("./providers/jwt");
 const tokenGenerator = "jwt";
 
 const auth = (req, res, next) => {
+  console.log(verifyToken);
   if (tokenGenerator == "jwt") {
     try {
       const tokenFromClient = req.header("x-auth-token");

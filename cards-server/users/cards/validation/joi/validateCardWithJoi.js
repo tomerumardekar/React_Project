@@ -1,3 +1,4 @@
+const { json } = require("express");
 const Joi = require("joi");
 
 const validateCardWithJoi = (card) => {
@@ -44,6 +45,7 @@ const validateCardWithJoi = (card) => {
       })
       .required(),
     bizNumber: Joi.number().allow(""),
+    likes: Joi.array().items(Joi.string()),
     user_id: Joi.string().allow(""),
   });
   return schema.validate(card);

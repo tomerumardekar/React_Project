@@ -18,12 +18,12 @@ const router = express.Router();
 router.post("/", async (req, res) => {
   try {
     let user = req.body;
-    const validationError = validateUser(user);
+    /*  const validationError = validateUser.validateRegistration(user);
     if (validationError) {
-      return handleError(res, 400, "validationError");
-    }
+      return handleError(res, 400, "validationError" + validationError);
+    } */
     user = normalizeUser(user);
-    user.password = generateUserPassword(user.password);
+    /* user.password = generateUserPassword(user.password); */
     user = await registerUser(user);
     return res.status(201).send(user);
   } catch (error) {
@@ -31,13 +31,13 @@ router.post("/", async (req, res) => {
   }
 });
 
-router.post("./login", async (req, res) => {
+router.post("/login", async (req, res) => {
   try {
     let user = req.body;
-    const validationError = validateUser(user);
+    /* const validationError = validateUser.validateRegistration(user);
     if (validationError) {
       return handleError(res, 400, "validationError");
-    }
+    } */
     const token = await loginUser(user);
     return res.send(token);
   } catch (error) {
