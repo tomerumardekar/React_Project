@@ -1,5 +1,5 @@
 const { handleError } = require("../utils/handleErrors");
-const verifyToken = require("./providers/jwt");
+const { verifyToken } = require("./providers/jwt");
 
 const tokenGenerator = "jwt";
 

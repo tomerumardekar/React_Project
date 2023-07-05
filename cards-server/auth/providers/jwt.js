@@ -22,5 +22,5 @@ const verifyToken = (tokenFromClient) => {
   }
 };
 
-module.exports = generateAuthToken;
-module.exports = verifyToken;
+exports.generateAuthToken = generateAuthToken;
+module.verifyToken = verifyToken;
