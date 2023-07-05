@@ -12,7 +12,7 @@ const auth = (req, res, next) => {
       const userInfo = verifyToken(tokenFromClient);
       if (!userInfo) throw new Error("Authentication Error: Unauthorize user");
       req.user = userInfo;
-      next();
+      return next();
     } catch (error) {
       return handleError(res, 401, error.message);
     }

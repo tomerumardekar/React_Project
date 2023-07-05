@@ -3,6 +3,7 @@ const User = require("./mongodb/User");
 const _ = require("lodash");
 
 const { createError } = require("../../utils/handleErrors");
+const { generateAuthToken } = require("../../../auth/providers/jwt");
 
 const registerUser = async (normalizedUser) => {
   if (DB === "MONGODB") {
@@ -30,8 +31,7 @@ const loginUser = async ({ email, password }) => {
       const validPassword = password == user.password;
       if (!validPassword)
         throw new Error("Authentication Error: Invalid email or password");
-      // const token = generateAuthToken(user);
-      const token = "MyTokenExample";
+      const token = generateAuthToken(user);
 
       return Promise.resolve(token);
     } catch (error) {
