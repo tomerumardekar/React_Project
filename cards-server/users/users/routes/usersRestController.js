@@ -35,10 +35,10 @@ router.post("/", async (req, res) => {
 router.post("/login", async (req, res) => {
   try {
     let user = req.body;
-    /* const validationError = validateUser.validateRegistration(user);
+    const validationError = validateUser.validateRegistration(user);
     if (validationError) {
       return handleError(res, 400, "validationError");
-    } */
+    }
     const token = await loginUser(user);
     return res.send(token);
   } catch (error) {
