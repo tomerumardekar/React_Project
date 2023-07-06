@@ -8,7 +8,7 @@ const generateAuthToken = (user) => {
     isAdmin,
     name: { first },
   } = user;
-  const payloadData = { _id, isAdmin, isBusiness, first };
+  const payloadData = { _id, isAdmin, isBusiness, first, id: _id };
   const token = jwt.sign(payloadData, key);
   return token;
 };

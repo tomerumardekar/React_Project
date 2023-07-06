@@ -1,5 +1,3 @@
-const generateUserPassword = require("./generateUserPassword");
-
 const normalizeUser = (rawUser) => {
   const name = { ...rawUser.name, middle: rawUser.name.middle || "" };
   const image = {

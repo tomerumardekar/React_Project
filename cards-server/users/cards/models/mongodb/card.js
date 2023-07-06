@@ -23,7 +23,7 @@ const cardSchema = new mongoose.Schema({
   web: URL,
   image: Image,
   address: Address,
-  bizNumber: {
+  BusinessNumber: {
     type: Number,
     minLength: 7,
     maxLength: 7,

@@ -51,8 +51,9 @@ const CardDetailsPage = () => {
               </Typography>
             </Grid>
             <Grid item xs={12} sm={6}>
+              {console.log(card)}
               <img
-                src={"/" + card.imageUrl}
+                src={card.imageUrl}
                 alt="Card image"
                 style={{ maxWidth: "100%" }}
               />

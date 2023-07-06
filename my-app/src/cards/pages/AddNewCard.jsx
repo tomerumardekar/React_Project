@@ -17,7 +17,6 @@ export default function AddNewCard() {
   const [successMessage, setSuccessMessage] = useState("");
   const { handleCreateCard } = useCards();
   const { user } = useUser();
-  console.log(user);
   const handleAddNewCard = async (newCard) => {
     await handleCreateCard({
       ...normalizeCard(newCard),

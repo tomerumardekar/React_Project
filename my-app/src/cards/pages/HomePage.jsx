@@ -6,7 +6,8 @@ import CardsFeedback from "../components/CardsFeedback";
 import useCards from "../hooks/useCards";
 
 export default function HomePage() {
-  const { value, handleGetCards, handleDeleteCard } = useCards();
+  const { value, handleGetCards, handleDeleteCard, handleLikeCard } =
+    useCards();
   const { error, isLoading, filterCards } = value;
 
   useEffect(() => {
@@ -15,6 +16,9 @@ export default function HomePage() {
   const handleDelete = async (id) => {
     await handleDeleteCard(id);
     await handleGetCards();
+  };
+  const changeLikeStatus = async (id, isLike) => {
+    await handleLikeCard(id, isLike);
   };
   return (
     <Container sx={{ mt: 2 }}>
@@ -48,6 +52,7 @@ export default function HomePage() {
         error={error}
         cards={filterCards}
         handleDelete={handleDelete}
+        onLike={changeLikeStatus}
       />
     </Container>
   );

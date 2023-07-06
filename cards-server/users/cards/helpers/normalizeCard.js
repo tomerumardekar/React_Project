@@ -15,7 +15,7 @@ const normalizeCard = async (card, userId) => {
       ...card.address,
       state: card.address.state || "",
     },
-    bizNumber: card.bizNumber || (await generateBizNumber()),
+    BusinessNumber: card.BusinessNumber || (await generateBizNumber()),
     user_id: card.user_id || userId,
   };
 };

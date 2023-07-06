@@ -25,7 +25,7 @@ export default function EditCardPage() {
   const { value, ...rest } = useForm(initialCardForm, cardSchema, (data) => {
     handleUpdateCard(card._id, {
       ...normalizeCard(data),
-      user_id: data.user_id,
+      user_id: user.id,
       BusinessNumber: data.BusinessNumber,
     }).then(() => {
       navigate(ROUTES.CARDS); // Navigate to the "cards" page after the card is updated

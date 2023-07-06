@@ -11,7 +11,7 @@ export const getCards = async () => {
 };
 export const getMyCards = async () => {
   try {
-    const response = await axios.get(`${apiUrl}/cards/mycards`);
+    const response = await axios.get(`${apiUrl}/cards/my-cards`);
     const data = response.data;
     return data;
   } catch (error) {

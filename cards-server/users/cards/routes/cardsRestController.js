@@ -5,6 +5,9 @@ const {
   getMyCards,
   getCard,
   createCard,
+  deleteCard,
+  updateCard,
+  likeCard,
 } = require("../models/cardsAccessDataService");
 const normalizeCard = require("../helpers/normalizeCard");
 const cardValidationService = require("../validation/cardValidationService");
@@ -51,7 +54,7 @@ router.post("/", auth, async (req, res) => {
 
     const validationError = validateCard(card);
     if (validationError) {
-      return handleError(res, 400, "validationError");
+      return handleError(res, 400, "validationError" + validationError);
     }
     card = await normalizeCard(card, user._id);
     card = await createCard(card);

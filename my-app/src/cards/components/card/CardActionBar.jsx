@@ -36,7 +36,6 @@ export default function CardActionBar({
     handleDialog();
     handleDelete(_id);
   };
-
   const handleLike = async () => {
     setLiked((prev) => !prev);
     await onLike(_id, isLiked);

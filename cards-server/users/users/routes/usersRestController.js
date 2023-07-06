@@ -13,6 +13,7 @@ const {
 const normalizeUser = require("../helpers/normalizeUser");
 const auth = require("../../../auth/authService");
 const validateUser = require("../validations/userValidationService");
+const { generateUserPassword } = require("../helpers/bcrypt");
 const router = express.Router();
 
 router.post("/", async (req, res) => {
@@ -23,7 +24,7 @@ router.post("/", async (req, res) => {
       return handleError(res, 400, "validationError" + validationError);
     } */
     user = normalizeUser(user);
-    /* user.password = generateUserPassword(user.password); */
+    user.password = generateUserPassword(user.password);
     user = await registerUser(user);
     return res.status(201).send(user);
   } catch (error) {

@@ -24,12 +24,10 @@ export default function CardPage() {
     await handleGetCards();
   };
 
-  const changeLikeStatus = useCallback(
-    async (id, isLike) => {
-      await handleLikeCard(id, isLike);
-    },
-    [handleLikeCard]
-  );
+  const changeLikeStatus = async (id, isLike) => {
+    await handleLikeCard(id, isLike);
+  };
+
   return (
     <div>
       <Container sx={{ mt: 2 }}>
@@ -48,7 +46,6 @@ export default function CardPage() {
             </Button>
           )}
         </Box>
-
         <CardsFeedback
           isLoading={isLoading}
           error={error}

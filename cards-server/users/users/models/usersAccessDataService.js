@@ -4,6 +4,7 @@ const _ = require("lodash");
 
 const { createError } = require("../../../utils/handleErrors");
 const { generateAuthToken } = require("../../../auth/providers/jwt");
+const { comparePassword } = require("../helpers/bcrypt");
 
 const registerUser = async (normalizedUser) => {
   if (DB === "MONGODB") {
@@ -28,7 +29,7 @@ const loginUser = async ({ email, password }) => {
       const user = await User.findOne({ email });
       if (!user)
         throw new Error("Authentication Error: Invalid email or password");
-      const validPassword = password == user.password;
+      const validPassword = comparePassword(password, user.password);
       if (!validPassword)
         throw new Error("Authentication Error: Invalid email or password");
       const token = generateAuthToken(user);

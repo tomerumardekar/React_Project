@@ -7,7 +7,7 @@ const mapCardToModel = (card) => {
     email: card.email,
     webUrl: card.web,
     about: card.about,
-    imageUrl: card.image.imageUrl,
+    imageUrl: card.image.url,
     imageAlt: card.image.alt,
     state: card.address.state,
     country: card.address.country,

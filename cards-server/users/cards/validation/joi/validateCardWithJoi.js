@@ -44,7 +44,7 @@ const validateCardWithJoi = (card) => {
         zip: Joi.number(),
       })
       .required(),
-    bizNumber: Joi.number().allow(""),
+    BusinessNumber: Joi.number().allow(""),
     likes: Joi.array().items(Joi.string()),
     user_id: Joi.string().allow(""),
   });
