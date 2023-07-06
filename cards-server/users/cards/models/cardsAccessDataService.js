@@ -1,8 +1,7 @@
 const { createError } = require("../../../utils/handleErrors");
 const Card = require("./mongodb/card");
 
-const DB = "MONGODB";
-
+const DB = config.get("DB");
 const createCard = async (normalizedCard) => {
   if (DB == "MONGODB") {
     try {

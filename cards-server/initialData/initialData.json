@@ -1,0 +1,99 @@
+{
+
+    "name": {
+
+      "first": "Tzach",
+
+      "middle": "",
+
+      "last": "Dabush"
+
+    },
+
+    "phone": "055-5555555",
+
+    "email": "admin@admin.com",
+
+    "password": "Abc123!",
+
+    "address": {
+
+      "state": "Haifa",
+
+      "country": "Israel",
+
+      "city": "Haifa",
+
+      "street": "HaNasi",
+
+      "zip": 123456,
+
+      "houseNumber": 12
+
+    },
+
+    "image": {
+
+      "url": "www.example.com",
+
+      "alt": "profile image"
+
+    },
+
+    "isBusiness": true,
+
+    "isAdmin": true
+
+  }
+
+ 
+
+
+
+ 
+
+{
+
+    "title": "first",
+
+    "subtitle": "subTitle",
+
+    "description": "testing",
+
+    "phone": "050-1111111",
+
+    "email": "text@text.com",
+
+    "web": "https://www.test.co.il",
+
+    "image": {
+
+      "url": "https://cdn.pixabay.com/photo/2016/04/20/08/21/entrepreneur-1340649_960_720.jpg",
+
+      "alt": "image"
+
+    },
+
+    "address": {
+
+      "state": "TLV",
+
+      "country": "Israel",
+
+      "street": "Dizingof",
+
+      "houseNumber": 1,
+
+      "city": "Tel Aviv",
+
+      "zip": 1312
+
+    },
+
+    "bizNumber": 1111111,
+
+    "likes": [],
+
+    "user_id": "64a533d428eb0c3a32dcf2b2"
+
+  }

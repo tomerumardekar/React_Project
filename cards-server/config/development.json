@@ -1,0 +1,4 @@
+{
+  "tokenGenerator": "jwt",
+  "DB": "MONGODB"
+}
