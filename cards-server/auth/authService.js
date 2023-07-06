@@ -1,7 +1,7 @@
 const { handleError } = require("../utils/handleErrors");
 const { verifyToken } = require("./providers/jwt");
-
-const tokenGenerator = "jwt";
+const config = require("config");
+const tokenGenerator = config.get("tokenGenerator");
 
 const auth = (req, res, next) => {
   console.log(verifyToken);
