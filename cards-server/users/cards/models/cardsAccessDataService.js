@@ -1,5 +1,6 @@
 const { createError } = require("../../../utils/handleErrors");
 const Card = require("./mongodb/card");
+const config = require("config");
 
 const DB = config.get("DB");
 const createCard = async (normalizedCard) => {

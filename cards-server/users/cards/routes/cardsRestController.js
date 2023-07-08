@@ -10,7 +10,7 @@ const {
   likeCard,
 } = require("../models/cardsAccessDataService");
 const normalizeCard = require("../helpers/normalizeCard");
-const cardValidationService = require("../validation/cardValidationService");
+
 const validateCard = require("../validation/cardValidationService");
 const auth = require("../../../auth/authService");
 const router = express.Router();

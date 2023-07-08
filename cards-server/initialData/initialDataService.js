@@ -3,6 +3,8 @@ const {
 } = require("../users/users/models/usersAccessDataService");
 const data = require("./initialData.json");
 const normalizeUser = require("../users/users/helpers/normalizeUser");
+const normalizeCard = require("../users/cards/helpers/normalizeCard");
+const { createCard } = require("../users/cards/models/cardsAccessDataService");
 const { generateUserPassword } = require("../users/users/helpers/bcrypt");
 const chalk = require("chalk");
 
