@@ -4,6 +4,10 @@ const cors = require("./middelwares/cors");
 const logger = require("./logger/loggerService");
 const router = require("../cards-server/users/router/router");
 const connectToDb = require("./users/DB/dbService");
+const {
+  generateInitialCards,
+  generateInitialUsers,
+} = require("../cards-server/initialData/initialDataService");
 const app = express();
 const PORT = 8181;
 
@@ -19,4 +23,6 @@ app.use((err, req, res, next) => {
 app.listen(PORT, () => {
   console.log(chalk.yellow("The server is listening to port " + PORT));
   connectToDb();
+  generateInitialCards();
+  generateInitialUsers();
 });
