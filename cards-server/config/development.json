@@ -1,4 +1,5 @@
 {
-  "tokenGenerator": "jwt",
-  "DB": "MONGODB"
+  "TOKEN_GENERATOR": "jwt",
+  "DB": "MONGODB",
+  "LOGGER": "morgan"
 }
