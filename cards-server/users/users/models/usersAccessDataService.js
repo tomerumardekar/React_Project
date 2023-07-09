@@ -5,7 +5,7 @@ const { createError } = require("../../../utils/handleErrors");
 const { generateAuthToken } = require("../../../auth/providers/jwt");
 const { comparePassword } = require("../helpers/bcrypt");
 
-const DB = process.env.DB || config.get("DB");
+const DB = config.get("DB");
 const registerUser = async (normalizedUser) => {
   if (DB === "MONGODB") {
     try {
