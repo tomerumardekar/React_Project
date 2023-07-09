@@ -1,7 +1,7 @@
 const mongoose = require("mongoose");
-
-const userName = "tzachd1232";
-const password = "Abc123";
+require("dotenv").config();
+const userName = process.env.ATLAS_USER_NAME;
+const password = process.env.ATLAS_PASSWORD;
 
 mongoose
   .connect(

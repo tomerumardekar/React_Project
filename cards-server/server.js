@@ -8,8 +8,10 @@ const {
   generateInitialCards,
   generateInitialUsers,
 } = require("../cards-server/initialData/initialDataService");
+require("dotenv").config();
+
 const app = express();
-const PORT = 8181;
+const PORT = process.env.PORT || 8181;
 
 app.use(cors);
 app.use(logger);

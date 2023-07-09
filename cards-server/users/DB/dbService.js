@@ -1,4 +1,5 @@
-const ENVIRONMENT = "development";
+const config = require("config");
+const ENVIRONMENT = config.get("ENVIRONMENT");
 
 const connectToDb = () => {
   if (ENVIRONMENT === "development")
