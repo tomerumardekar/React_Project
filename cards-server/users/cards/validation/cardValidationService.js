@@ -1,6 +1,8 @@
 const validateCardWithJoi = require("./joi/validateCardWithJoi");
+const config = require("config");
 
-const validator = "joi";
+const validator = config.get("VALIDATOR");
+
 const validateCard = (card) => {
   if (validator == "joi") {
     const { error } = validateCardWithJoi(card);
