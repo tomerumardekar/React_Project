@@ -4,7 +4,7 @@ const config = require("config");
 
 const DB = config.get("DB");
 const createCard = async (normalizedCard) => {
-  if (DB == "DB") {
+  if (DB == "MONGODB") {
     try {
       let card = new Card(normalizedCard);
       await card.save();

@@ -17,11 +17,11 @@ const registerValidation = (user) => {
       })
       .required(),
     password: Joi.string()
-      .pattern(/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&*-]).{9,20}$/)
+      .pattern(/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&*-]).{7,20}$/)
       .required()
       .messages({
         "string.pattern.base":
-          'User "password" must be at least nine characters long and contain an uppercase letter, a lowercase letter, a number, and one of the following characters: !@#$%^&*-',
+          'User "password" must be at least seven characters long and contain an uppercase letter, a lowercase letter, a number, and one of the following characters: !@#$%^&*-',
       }),
     image: Joi.object()
       .keys({

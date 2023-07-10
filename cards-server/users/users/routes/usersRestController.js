@@ -19,10 +19,11 @@ const router = express.Router();
 router.post("/", async (req, res) => {
   try {
     let user = req.body;
-    /*  const validationError = validateUser.validateRegistration(user);
+    console.log(user.image);
+    const validationError = validateUser.validateRegistration(user);
     if (validationError) {
       return handleError(res, 400, "validationError" + validationError);
-    } */
+    }
     user = normalizeUser(user);
     user.password = generateUserPassword(user.password);
     user = await registerUser(user);
@@ -35,9 +36,10 @@ router.post("/", async (req, res) => {
 router.post("/login", async (req, res) => {
   try {
     let user = req.body;
-    const validationError = validateUser.validateRegistration(user);
+    const validationError = validateUser.validateLogin(user);
     if (validationError) {
-      return handleError(res, 400, "validationError");
+      console.log(validationError);
+      return handleError(res, 400, "validationError " + validationError);
     }
     const token = await loginUser(user);
     return res.send(token);

@@ -1,6 +1,7 @@
 const Joi = require("joi");
 
 const loginValidation = (user) => {
+  console.log(user);
   const schema = Joi.object({
     email: Joi.string()
       .ruleset.pattern(

@@ -14,6 +14,7 @@ const generateInitialCards = async () => {
     try {
       const userId = "64a533d428eb0c3a32dcf2b2";
       card = await normalizeCard(card, userId);
+
       await createCard(card);
       return;
     } catch (error) {

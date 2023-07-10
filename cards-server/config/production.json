@@ -3,5 +3,5 @@
   "DB": "MONGODB",
   "LOGGER": "morgan",
   "VALIDATOR": "Joi",
-  " ENVIRONMENT": "production"
+  "ENVIRONMENT": "production"
 }
