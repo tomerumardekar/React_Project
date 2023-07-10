@@ -1,9 +1,12 @@
 import React from "react";
 import { useUser } from "../../users/providers/UserProvider";
 import { Container, Typography } from "@mui/material";
+/* import { user } from "../../../src/users/helpers/normalization/mapUserToModel"; */
 
 export default function UserPage() {
   const { user } = useUser();
+
+  console.log(user);
 
   return (
     <div style={{ backgroundColor: "#f5f5f5", minHeight: "100vh" }}>
@@ -22,7 +25,7 @@ export default function UserPage() {
           color="initial"
           style={{ fontFamily: "Arial", marginBottom: "2vh" }}
         >
-          Hello, you've reached your profile page, {user?.firstName}!
+          Hello, you've reached your profile page {user?.first}!
         </Typography>
 
         <Typography
@@ -30,7 +33,7 @@ export default function UserPage() {
           color="initial"
           style={{ fontFamily: "Arial", marginBottom: "1vh" }}
         >
-          Name: {user?.firstName} {user?.name?.middle} {user?.last}
+          Name: {user?.first} {user?.middle} {user?.last}
         </Typography>
         <Typography
           variant="h6"

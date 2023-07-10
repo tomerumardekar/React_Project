@@ -58,7 +58,7 @@
       "email": "text@text.com",
       "web": "https://www.test.co.il",
       "image": {
-        "url": "https://cdn.pixabay.com/photo/2016/04/20/08/21/entrepreneur-1340649_960_720.jpg",
+        "url": "https://media.istockphoto.com/id/1418476287/photo/businessman-analyzing-companys-financial-balance-sheet-working-with-digital-augmented-reality.jpg?s=1024x1024&w=is&k=20&c=5XJmAncylGHolXBNv72I92Cttvaq7eGhpckgjHz34V4=",
         "alt": "Image 1"
       },
       "address": {
@@ -74,25 +74,48 @@
       "user_id": "64a533d428eb0c3a32dcf2b2"
     },
     {
-      "title": "Second Card",
+      "title": "Third Card",
       "subtitle": "Subtitle 2",
       "description": "Testing Card 2",
-      "phone": "050-2222222",
-      "email": "example@example.com",
-      "web": "https://www.example.com",
+      "phone": "050-1111111",
+      "email": "example@text.com",
+      "web": "https://www.test.co.il",
       "image": {
-        "url": "https://cdn.pixabay.com/photo/2017/06/01/07/15/education-2360142_960_720.jpg",
-        "alt": "Image 2"
+        "url": "https://cdn.pixabay.com/photo/2016/11/27/21/42/stock-1863880_1280.jpg",
+        "alt": "Image 1"
       },
       "address": {
-        "state": "NY",
-        "country": "United States",
-        "street": "Main Street",
-        "houseNumber": 10,
-        "city": "New York",
-        "zip": 12345
+        "state": "TLV",
+        "country": "Israel",
+        "street": "Dizingof",
+        "houseNumber": 1,
+        "city": "Tel Aviv",
+        "zip": 1312
       },
-      "bizNumber": 2222222,
+      "bizNumber": 1111111,
+      "likes": [],
+      "user_id": "64a533d428eb0c3a32dcf2b2"
+    },
+    {
+      "title": " Second Card",
+      "subtitle": "Subtitle 3",
+      "description": "Testing Card 3",
+      "phone": "050-3333333",
+      "email": "info@example.com",
+      "web": "https://www.example.com",
+      "image": {
+        "url": "https://cdn.pixabay.com/photo/2016/04/20/08/21/entrepreneur-1340649_960_720.jpg",
+        "alt": "Image 3"
+      },
+      "address": {
+        "state": "CA",
+        "country": "United States",
+        "street": "Sunset Boulevard",
+        "houseNumber": 20,
+        "city": "Los Angeles",
+        "zip": 90001
+      },
+      "bizNumber": 3333333,
       "likes": [],
       "user_id": "64a533d428eb0c3a32dcf2b2"
     }

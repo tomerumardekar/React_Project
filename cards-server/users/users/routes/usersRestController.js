@@ -67,6 +67,7 @@ router.get("/", auth, async (req, res) => {
 router.get("/:id", auth, async (req, res) => {
   try {
     const { id } = req.params;
+
     let _id = req.user._id;
     let isAdmin = req.user.isAdmin;
     if (_id !== id && !isAdmin)
