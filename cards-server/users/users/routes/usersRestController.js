@@ -67,7 +67,7 @@ router.get("/", auth, async (req, res) => {
 router.get("/:id", auth, async (req, res) => {
   try {
     const { id } = req.params;
-
+    console.log(req.params);
     let _id = req.user._id;
     let isAdmin = req.user.isAdmin;
     if (_id !== id && !isAdmin)
@@ -77,7 +77,7 @@ router.get("/:id", auth, async (req, res) => {
         "Authorization Error: You must be an admin type user or the registered user to see this user details"
       );
     const user = await getUser(id);
-    returnres.send(user);
+    return res.send(user);
   } catch (error) {
     return handleError(res, error.status || 500, error.message);
   }

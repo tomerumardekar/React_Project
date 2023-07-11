@@ -1,12 +1,22 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { useUser } from "../../users/providers/UserProvider";
 import { Container, Typography } from "@mui/material";
-/* import { user } from "../../../src/users/helpers/normalization/mapUserToModel"; */
+import { getUser } from "../../users/services/usersApiService";
 
 export default function UserPage() {
   const { user } = useUser();
+  const [userData, setUserData] = useState();
 
-  console.log(user);
+  useEffect(() => {
+    async function fetchData() {
+      if (user) {
+        const result = await getUser(user.id);
+        console.log(result);
+        setUserData(result);
+      }
+    }
+    fetchData();
+  }, [user]);
 
   return (
     <div style={{ backgroundColor: "#f5f5f5", minHeight: "100vh" }}>
@@ -25,7 +35,8 @@ export default function UserPage() {
           color="initial"
           style={{ fontFamily: "Arial", marginBottom: "2vh" }}
         >
-          Hello, you've reached your profile page {user?.first}!
+          Hello, you've reached your profile page {userData?.name?.first}{" "}
+          {userData?.name?.last}!
         </Typography>
 
         <Typography
@@ -33,29 +44,30 @@ export default function UserPage() {
           color="initial"
           style={{ fontFamily: "Arial", marginBottom: "1vh" }}
         >
-          Name: {user?.first} {user?.middle} {user?.last}
+          Name: {userData?.name?.first} {userData?.name?.middle}{" "}
+          {userData?.name?.last}
         </Typography>
         <Typography
           variant="h6"
           color="initial"
           style={{ fontFamily: "Arial", marginBottom: "1vh" }}
         >
-          Email: {user?.email}
+          Email: {userData?.email}
         </Typography>
         <Typography
           variant="h6"
           color="initial"
           style={{ fontFamily: "Arial", marginBottom: "1vh" }}
         >
-          Phone: {user?.phone}
+          Phone: {userData?.phone}
         </Typography>
         <Typography
           variant="h6"
           color="initial"
           style={{ fontFamily: "Arial", marginBottom: "1vh" }}
         >
-          Address: {user?.address?.city} {user?.address?.street}{" "}
-          {user?.address?.hoeNumber} {user?.address?.country}{" "}
+          Address: {userData?.address?.city} {userData?.address?.street}{" "}
+          {userData?.address?.houseNumber} {userData?.address?.country}{" "}
           {user?.address?.zip}
         </Typography>
         <Typography
@@ -77,7 +89,7 @@ export default function UserPage() {
           color="initial"
           style={{ fontFamily: "Arial", marginBottom: "1vh" }}
         >
-          User ID: {user?.user_id}
+          User ID: {userData?._id}
         </Typography>
       </Container>
     </div>
